@@ -1683,3 +1683,339 @@ document.addEventListener(
     { once: true }
 );
 </script>
+<script>
+
+/* =========================================
+   CINEMATIC POLITICAL SCIENCE REPORT
+========================================= */
+
+function generatePoliticalReport() {
+
+    const totalQuestions = politicalQuestions.length;
+
+    const wrongAnswers =
+        totalQuestions - totalScore;
+
+    const percentage =
+        Math.round(
+            (totalScore / totalQuestions) * 100
+        );
+
+    let rating;
+    let attention;
+    let message;
+
+    if (percentage >= 90) {
+
+        rating = "EXCELLENT";
+        attention = "Very Low";
+        message =
+            "Your Political Science preparation is very strong. Keep revising regularly.";
+
+    } else if (percentage >= 75) {
+
+        rating = "VERY GOOD";
+        attention = "Low";
+        message =
+            "You have a strong understanding, but revision can make your preparation even better.";
+
+    } else if (percentage >= 60) {
+
+        rating = "GOOD";
+        attention = "Moderate";
+        message =
+            "Your basics are developing well. Focus more on concepts and regular practice.";
+
+    } else if (percentage >= 40) {
+
+        rating = "NEEDS IMPROVEMENT";
+        attention = "High";
+        message =
+            "You should spend more time revising Political Science concepts and practicing questions.";
+
+    } else {
+
+        rating = "FOCUS REQUIRED";
+        attention = "Very High";
+        message =
+            "Start with the basics and revise each topic carefully before attempting more quizzes.";
+    }
+
+
+    const quizBox =
+        document.querySelector(".quiz-box");
+
+    quizBox.innerHTML = `
+
+        <div class="political-report">
+
+            <div class="report-label">
+                POLITICAL SCIENCE
+            </div>
+
+            <h3 class="report-title">
+                PERFORMANCE REPORT
+            </h3>
+
+            <div class="report-score">
+                ${percentage}%
+            </div>
+
+            <div class="report-rating">
+                ${rating}
+            </div>
+
+            <div class="report-grid">
+
+                <div class="report-card">
+                    <span>TOTAL</span>
+                    <strong>
+                        ${totalQuestions}
+                    </strong>
+                </div>
+
+                <div class="report-card">
+                    <span>CORRECT</span>
+                    <strong>
+                        ${totalScore}
+                    </strong>
+                </div>
+
+                <div class="report-card">
+                    <span>WRONG</span>
+                    <strong>
+                        ${wrongAnswers}
+                    </strong>
+                </div>
+
+                <div class="report-card">
+                    <span>ATTENTION</span>
+                    <strong>
+                        ${attention}
+                    </strong>
+                </div>
+
+            </div>
+
+            <div class="report-message">
+                ${message}
+            </div>
+
+            <div class="attention-meter">
+
+                <div class="meter-label">
+                    POLITICAL SCIENCE FOCUS
+                </div>
+
+                <div class="meter">
+                    <div
+                        class="meter-fill"
+                        style="width:${100 - percentage}%">
+                    </div>
+                </div>
+
+                <div class="meter-text">
+                    ${100 - percentage}% additional
+                    focus recommended
+                </div>
+
+            </div>
+
+            <button
+                class="restart-report-btn"
+                onclick="restartQuiz()">
+
+                TAKE QUIZ AGAIN →
+
+            </button>
+
+        </div>
+    `;
+}
+
+
+/* =========================================
+   CINEMATIC REPORT STYLE
+========================================= */
+
+const reportStyle =
+document.createElement("style");
+
+reportStyle.innerHTML = `
+
+.political-report {
+    text-align: center;
+    padding: 15px 5px;
+    animation: reportAppear 1s ease;
+}
+
+.report-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #777;
+    margin-bottom: 18px;
+}
+
+.report-title {
+    font-size: clamp(28px, 6vw, 55px);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.report-score {
+    font-size: clamp(60px, 15vw, 110px);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(
+        180deg,
+        #ffffff,
+        #666666
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.report-rating {
+    margin-top: 15px;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #aaa;
+}
+
+.report-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+
+    margin-top: 40px;
+}
+
+.report-card {
+    padding: 20px 10px;
+
+    border: 1px solid #292929;
+
+    background:
+        rgba(255,255,255,0.025);
+}
+
+.report-card span {
+    display: block;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color: #666;
+
+    margin-bottom: 10px;
+}
+
+.report-card strong {
+    font-size: 20px;
+}
+
+.report-message {
+    margin: 35px auto 0;
+
+    max-width: 650px;
+
+    color: #999;
+
+    line-height: 1.7;
+
+    font-size: 15px;
+}
+
+.attention-meter {
+    margin-top: 40px;
+}
+
+.meter-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.meter {
+    height: 5px;
+
+    width: 100%;
+
+    background: #202020;
+
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+
+    background: white;
+
+    transition:
+        width 1.5s ease;
+}
+
+.meter-text {
+    margin-top: 12px;
+
+    font-size: 11px;
+
+    color: #777;
+}
+
+.restart-report-btn {
+    margin-top: 35px;
+
+    padding: 15px 30px;
+
+    background: white;
+
+    color: black;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+}
+
+.restart-report-btn:hover {
+    transform: translateY(-4px);
+}
+
+@keyframes reportAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .report-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+`;
+
+document.head.appendChild(reportStyle);
+
+</script>
