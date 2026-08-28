@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Study Hub | Muhammad Basit</title>
+<title>Study Hub — Muhammad Basit</title>
 
-<!-- FAVICON -->
-<link rel="icon" type="image/svg+xml"
-href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23000000'/%3E%3Ctext x='50' y='64' text-anchor='middle' font-size='42' font-family='Arial' font-weight='bold' fill='%235da9ff'%3ESH%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#000000">
+<meta name="description"
+content="Study Hub — Class 11 Humanities learning platform created by Muhammad Basit">
+
+<!-- ================= FAVICON ================= -->
+
+<link rel="icon"
+href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23000000'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-size='39' font-family='Arial' font-weight='900' fill='%2361b0ff'%3ESH%3C/text%3E%3C/svg%3E">
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
 *{
     margin:0;
     padding:0;
@@ -18,184 +29,279 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
     -webkit-tap-highlight-color:transparent;
 }
 
-:root{
-    --black:#000000;
-    --black2:#050608;
-    --card:#0c0f14;
-    --card2:#11151c;
-    --white:#ffffff;
-    --gray:#8d99aa;
-    --blue:#53a7ff;
-    --purple:#7967ff;
-    --green:#20d69b;
-    --red:#ff5870;
-    --border:rgba(255,255,255,.09);
-}
-
-html,body{
-    min-height:100%;
+html{
+    scroll-behavior:smooth;
 }
 
 body{
+
     min-height:100vh;
-    color:var(--white);
+
     background:
         radial-gradient(
-            circle at 15% 10%,
-            rgba(60,140,255,.15),
+            circle at 10% 0%,
+            rgba(63,140,255,.16),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(123,82,255,.13),
             transparent 27%
         ),
+
         radial-gradient(
-            circle at 85% 80%,
-            rgba(100,70,255,.13),
+            circle at 50% 100%,
+            rgba(20,190,170,.07),
             transparent 30%
         ),
+
         #000;
-    font-family:Arial,Helvetica,sans-serif;
+
+    color:#fff;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
     overflow-x:hidden;
 }
 
-/* PREMIUM LIGHT MOVEMENT */
 
-body:before{
+/* =====================================================
+   PREMIUM BACKGROUND
+===================================================== */
+
+body::before{
+
     content:"";
+
     position:fixed;
-    inset:-50%;
+
+    inset:-30%;
+
     pointer-events:none;
+
     background:
+
         radial-gradient(
-            circle,
-            rgba(80,150,255,.035),
-            transparent 35%
+            circle at 30% 30%,
+            rgba(70,150,255,.035),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 70% 70%,
+            rgba(120,80,255,.035),
+            transparent 25%
         );
-    animation:backgroundMove 12s linear infinite;
+
+    animation:
+        backgroundFloat 18s ease-in-out infinite alternate;
+
+    z-index:-1;
 }
 
-@keyframes backgroundMove{
+@keyframes backgroundFloat{
+
     0%{
-        transform:translate(-10%,-5%);
+        transform:
+            translate(-3%,-2%)
+            scale(1);
     }
+
     50%{
-        transform:translate(10%,8%);
+        transform:
+            translate(3%,2%)
+            scale(1.05);
     }
+
     100%{
-        transform:translate(-10%,-5%);
+        transform:
+            translate(-2%,3%)
+            scale(1.02);
     }
 }
+
 
 button{
+
     font-family:inherit;
+
     color:white;
-    border:0;
+
+    border:none;
+
     cursor:pointer;
+
+    outline:none;
 }
 
 .hidden{
     display:none!important;
 }
 
-/* =========================================
+
+/* =====================================================
    WELCOME SCREEN
-========================================= */
+===================================================== */
 
 #welcomeScreen{
+
     position:fixed;
+
     inset:0;
-    z-index:99999;
+
+    z-index:999999;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
+
     align-items:center;
 
     text-align:center;
 
     background:
+
         radial-gradient(
             circle at center,
-            rgba(50,100,180,.09),
+            rgba(58,125,220,.10),
             transparent 40%
         ),
+
         #000;
 
-    transition:opacity .8s ease;
+    transition:
+        opacity .9s ease,
+        visibility .9s ease;
 }
 
-.welcomeTop{
-    color:#8b98aa;
-    font-size:12px;
-    letter-spacing:6px;
-    margin-bottom:20px;
+
+.welcomeSmall{
+
+    font-size:11px;
+
+    letter-spacing:7px;
+
+    color:#78869a;
+
+    margin-bottom:21px;
+
     opacity:0;
-    animation:welcomeTop 1s ease forwards;
+
+    animation:
+        welcomeSmall 1s ease forwards;
 }
+
 
 .welcomeName{
-    font-size:clamp(34px,10vw,52px);
-    font-weight:900;
+
+    font-size:
+        clamp(35px,10vw,58px);
+
+    font-weight:950;
+
     letter-spacing:2px;
 
     background:
+
         linear-gradient(
             135deg,
-            #ffffff 15%,
-            #62adff 50%,
-            #8070ff 90%
+            #ffffff 10%,
+            #65b2ff 48%,
+            #8170ff 90%
         );
 
     -webkit-background-clip:text;
+
     background-clip:text;
+
     color:transparent;
 
     opacity:0;
 
     animation:
-        welcomeName 1.2s ease .35s forwards;
+        welcomeName 1.3s
+        cubic-bezier(.2,.8,.2,1)
+        .3s forwards;
 }
 
+
 .welcomeLine{
-    width:0;
+
     height:2px;
-    margin:22px 0 17px;
+
+    width:0;
+
+    margin:
+        22px 0
+        17px;
 
     background:
+
         linear-gradient(
             90deg,
-            #4ca5ff,
-            #7968ff
+            #4da5ff,
+            #7767ff
         );
 
     box-shadow:
-        0 0 18px rgba(70,150,255,.4);
+        0 0 25px
+        rgba(70,150,255,.5);
 
-    animation:welcomeLine 1.2s ease 1s forwards;
+    animation:
+        welcomeLine 1.2s
+        ease
+        1s
+        forwards;
 }
+
 
 .welcomeHub{
-    color:#768397;
-    font-size:11px;
-    letter-spacing:7px;
+
+    font-size:10px;
+
+    letter-spacing:8px;
+
+    color:#748195;
+
     opacity:0;
-    animation:welcomeHub 1s ease 1.25s forwards;
+
+    animation:
+        welcomeHub 1s
+        ease
+        1.25s
+        forwards;
 }
 
-@keyframes welcomeTop{
+
+@keyframes welcomeSmall{
+
     from{
         opacity:0;
-        transform:translateY(18px);
+        transform:translateY(20px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
 }
 
+
 @keyframes welcomeName{
+
     from{
         opacity:0;
-        transform:scale(.88);
-        filter:blur(10px);
+        transform:scale(.86);
+        filter:blur(12px);
     }
+
     to{
         opacity:1;
         transform:scale(1);
@@ -203,339 +309,586 @@ button{
     }
 }
 
+
 @keyframes welcomeLine{
+
     to{
-        width:190px;
+        width:200px;
     }
 }
 
+
 @keyframes welcomeHub{
-    from{
-        opacity:0;
-    }
+
     to{
         opacity:1;
     }
 }
 
-/* =========================================
-   APP
-========================================= */
+
+/* =====================================================
+   APP CONTAINER
+===================================================== */
 
 .app{
-    position:relative;
-    z-index:1;
-    width:min(680px,100%);
+
+    width:min(720px,100%);
+
     margin:auto;
-    padding:18px;
-    padding-bottom:50px;
+
+    padding:
+        16px
+        16px
+        60px;
 }
 
-/* HEADER */
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 header{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
-    padding:7px 0 22px;
+
+    padding:
+        7px
+        0
+        22px;
 }
 
+
 .brand{
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
 }
 
+
 .brandLogo{
-    width:49px;
-    height:49px;
-    border-radius:16px;
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:17px;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
     background:
+
         linear-gradient(
             145deg,
-            #111822,
+            #151c27,
             #050608
         );
 
-    border:1px solid rgba(90,165,255,.28);
+    border:
+        1px solid
+        rgba(91,166,255,.30);
 
     box-shadow:
-        0 0 25px rgba(70,150,255,.12),
-        inset 0 1px 0 rgba(255,255,255,.05);
+
+        0 0 28px
+        rgba(64,145,255,.12),
+
+        inset 0 1px 0
+        rgba(255,255,255,.06);
 }
 
+
 .brandLogo span{
+
     font-size:16px;
-    font-weight:900;
+
+    font-weight:950;
 
     background:
+
         linear-gradient(
             135deg,
-            #62b0ff,
-            #8170ff
+            #62b2ff,
+            #806eff
         );
 
     -webkit-background-clip:text;
+
     color:transparent;
 }
 
+
 .brand h1{
+
     font-size:20px;
-    font-weight:900;
+
+    font-weight:950;
 }
 
+
 .brand p{
-    color:#727f91;
+
+    color:#707e91;
+
     font-size:11px;
+
     margin-top:4px;
 }
 
+
 .settingsBtn{
+
     width:45px;
+
     height:45px;
+
     border-radius:15px;
 
-    background:#0c1016;
-    border:1px solid var(--border);
-
-    font-size:19px;
-}
-
-/* =========================================
-   HOME HERO
-========================================= */
-
-.hero{
-    position:relative;
-    overflow:hidden;
-
-    padding:28px 23px;
-    border-radius:28px;
-
     background:
-        linear-gradient(
-            145deg,
-            rgba(20,26,35,.88),
-            rgba(5,7,10,.96)
-        );
+        rgba(13,17,23,.85);
 
-    border:1px solid var(--border);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-    box-shadow:
-        0 25px 70px rgba(0,0,0,.55),
-        inset 0 1px 0 rgba(255,255,255,.04);
-}
-
-.hero:after{
-    content:"";
-    position:absolute;
-    width:200px;
-    height:200px;
-    right:-100px;
-    top:-100px;
-
-    background:#4d9fff;
-    filter:blur(100px);
-    opacity:.13;
-}
-
-.hero h2{
-    position:relative;
-    z-index:1;
-    font-size:31px;
-    line-height:1.12;
-}
-
-.hero p{
-    position:relative;
-    z-index:1;
-    color:#919dad;
-    font-size:14px;
-    line-height:1.55;
-    margin-top:11px;
-}
-
-.creator{
-    position:relative;
-    z-index:1;
-    margin-top:18px;
-    color:#687588;
-    font-size:12px;
-}
-
-.creator b{
-    color:#d9e6f6;
-}
-
-/* =========================================
-   HOME CARDS
-========================================= */
-
-.sectionTitle{
     font-size:18px;
-    font-weight:800;
-    margin:25px 4px 12px;
-}
-
-.subject{
-    width:100%;
-    text-align:left;
-
-    padding:20px;
-    margin-bottom:12px;
-
-    border-radius:23px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,23,30,.95),
-            rgba(5,7,10,.98)
-        );
-
-    border:1px solid var(--border);
-
-    box-shadow:
-        0 12px 35px rgba(0,0,0,.3);
 
     transition:.2s;
 }
 
-.subject:active{
-    transform:scale(.975);
+.settingsBtn:active{
+
+    transform:scale(.92);
 }
 
-.subjectInside{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
 
-.subjectIcon{
-    width:56px;
-    height:56px;
-    flex-shrink:0;
+/* =====================================================
+   HERO
+===================================================== */
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.hero{
 
-    border-radius:18px;
+    position:relative;
+
+    overflow:hidden;
+
+    padding:30px 24px;
+
+    border-radius:29px;
 
     background:
+
         linear-gradient(
             145deg,
-            #161d27,
-            #080a0d
+            rgba(19,26,36,.93),
+            rgba(4,6,9,.98)
         );
 
-    border:1px solid var(--border);
+    border:
+        1px solid
+        rgba(255,255,255,.09);
 
-    font-size:26px;
+    box-shadow:
+
+        0 25px 80px
+        rgba(0,0,0,.55),
+
+        inset 0 1px 0
+        rgba(255,255,255,.05);
 }
 
-.subject h3{
-    font-size:17px;
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+
+    height:250px;
+
+    right:-120px;
+
+    top:-130px;
+
+    border-radius:50%;
+
+    background:#478fff;
+
+    filter:blur(100px);
+
+    opacity:.12;
 }
 
-.subject p{
-    color:#788597;
-    font-size:12px;
-    margin-top:5px;
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:170px;
+
+    height:170px;
+
+    left:-100px;
+
+    bottom:-120px;
+
+    background:#765fff;
+
+    filter:blur(90px);
+
+    opacity:.08;
 }
 
-/* =========================================
-   QUIZ
-========================================= */
 
-.back{
-    background:none;
-    color:#a3afbf;
-    padding:6px 0 17px;
+.hero h2{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:32px;
+
+    line-height:1.12;
+
+    font-weight:950;
+}
+
+
+.hero p{
+
+    position:relative;
+
+    z-index:2;
+
+    color:#8d9aaa;
+
     font-size:14px;
+
+    line-height:1.6;
+
+    margin-top:12px;
 }
 
-.quizTitle{
-    font-size:25px;
+
+.creator{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:19px;
+
+    color:#657286;
+
+    font-size:12px;
+}
+
+
+.creator b{
+
+    color:#d9e6f5;
+}
+
+
+/* =====================================================
+   SECTION TITLES
+===================================================== */
+
+.sectionTitle{
+
+    margin:
+        27px
+        4px
+        12px;
+
+    font-size:18px;
+
     font-weight:900;
 }
 
-.progressInfo{
+
+/* =====================================================
+   SUBJECT CARDS
+===================================================== */
+
+.subject{
+
+    width:100%;
+
+    text-align:left;
+
+    padding:20px;
+
+    margin-bottom:12px;
+
+    border-radius:24px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(17,23,31,.96),
+            rgba(5,7,10,.99)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    box-shadow:
+
+        0 14px 40px
+        rgba(0,0,0,.35);
+
+    transition:
+        transform .2s,
+        border .2s;
+}
+
+
+.subject:hover{
+
+    border-color:
+        rgba(85,160,255,.20);
+}
+
+
+.subject:active{
+
+    transform:scale(.975);
+}
+
+
+.subjectInside{
+
     display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+
+.subjectIcon{
+
+    width:58px;
+
+    height:58px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:19px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #171e29,
+            #07090c
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    font-size:27px;
+}
+
+
+.subject h3{
+
+    font-size:17px;
+
+    font-weight:850;
+}
+
+
+.subject p{
+
+    color:#778598;
+
+    font-size:12px;
+
+    margin-top:5px;
+}
+
+
+/* =====================================================
+   GENERAL BACK BUTTON
+===================================================== */
+
+.back{
+
+    display:block;
+
+    background:none;
+
+    color:#9aa7b8;
+
+    padding:
+        7px
+        0
+        17px;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   QUIZ TITLE
+===================================================== */
+
+.quizTitle{
+
+    font-size:26px;
+
+    font-weight:950;
+}
+
+
+.progressInfo{
+
+    display:flex;
+
     justify-content:space-between;
 
-    margin:16px 0 8px;
+    margin:
+        17px
+        0
+        8px;
 
-    color:#7e8b9d;
+    color:#7d8b9e;
+
     font-size:12px;
 }
 
+
 .progress{
+
+    width:100%;
+
     height:7px;
+
     border-radius:20px;
+
     overflow:hidden;
+
     background:#15191f;
 }
 
+
 .progress div{
-    width:0;
+
     height:100%;
 
+    width:0;
+
+    border-radius:20px;
+
     background:
+
         linear-gradient(
             90deg,
-            #4da5ff,
-            #7968ff
+            #4ba5ff,
+            #7967ff
         );
 
     transition:.35s;
 }
 
+
+/* =====================================================
+   QUESTION CARD
+===================================================== */
+
 .questionCard{
+
     margin-top:19px;
+
     padding:22px;
-    border-radius:26px;
+
+    border-radius:27px;
 
     background:
+
         linear-gradient(
             145deg,
-            rgba(19,24,32,.96),
-            rgba(5,7,10,.99)
+            rgba(18,24,32,.97),
+            rgba(4,6,9,.995)
         );
 
-    border:1px solid var(--border);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.025);
+
+        0 25px 70px
+        rgba(0,0,0,.48),
+
+        inset 0 1px 0
+        rgba(255,255,255,.025);
 }
+
 
 .qNumber{
-    color:#5ba9ff;
+
+    color:#5baaff;
+
     font-size:11px;
-    font-weight:900;
+
     letter-spacing:1px;
+
+    font-weight:900;
 }
+
 
 .question{
+
     margin-top:13px;
+
     font-size:20px;
-    line-height:1.45;
+
+    line-height:1.48;
+
+    font-weight:750;
 }
 
+
 .options{
+
     display:grid;
+
     gap:11px;
+
     margin-top:22px;
 }
 
+
 .option{
+
     width:100%;
+
     text-align:left;
 
     padding:16px;
@@ -543,309 +896,632 @@ header{
     border-radius:17px;
 
     background:#10151c;
-    border:1px solid rgba(255,255,255,.08);
 
-    transition:.2s;
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    color:#eef3fa;
+
+    font-size:14px;
+
+    line-height:1.4;
+
+    transition:.18s;
 }
 
+
 .option:active{
+
     transform:scale(.985);
 }
 
+
 .option.correct{
-    background:rgba(32,214,155,.12);
-    border-color:var(--green);
+
+    background:
+        rgba(32,214,155,.12);
+
+    border-color:
+        #20d69b;
+
+    color:#bff9e9;
 }
+
 
 .option.wrong{
-    background:rgba(255,88,112,.12);
-    border-color:var(--red);
+
+    background:
+        rgba(255,82,108,.12);
+
+    border-color:
+        #ff526d;
+
+    color:#ffd2da;
 }
 
+
 .next{
+
     width:100%;
 
     margin-top:17px;
+
     padding:16px;
 
     border-radius:17px;
 
     background:
+
         linear-gradient(
             135deg,
-            #3f98ff,
+            #3d99ff,
             #7160ff
         );
 
     font-size:15px;
 
+    font-weight:850;
+
     box-shadow:
-        0 12px 35px rgba(60,120,255,.18);
+        0 13px 35px
+        rgba(62,130,255,.18);
 }
 
-/* =========================================
+
+/* =====================================================
    MAP MENU
-========================================= */
+===================================================== */
 
 .mapDescription{
+
     color:#7e8b9d;
+
     font-size:13px;
-    line-height:1.5;
-    margin:8px 0 20px;
+
+    line-height:1.55;
+
+    margin:
+        8px
+        0
+        20px;
 }
 
+
 .mapCard{
+
     width:100%;
+
     text-align:left;
 
     padding:23px;
+
     margin-bottom:12px;
 
-    border-radius:23px;
+    border-radius:24px;
 
     background:
+
         linear-gradient(
             145deg,
             rgba(18,24,32,.96),
-            rgba(5,7,10,.99)
+            rgba(4,6,9,.99)
         );
 
-    border:1px solid var(--border);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
     transition:.2s;
 }
 
+
 .mapCard:active{
+
     transform:scale(.975);
 }
 
+
 .mapEmoji{
-    font-size:37px;
+
+    font-size:39px;
 }
 
+
 .mapCard h3{
+
     margin-top:13px;
+
     font-size:18px;
 }
 
+
 .mapCard p{
+
     margin-top:6px;
+
     color:#7f8c9e;
+
     font-size:12px;
 }
 
-/* =========================================
-   MAP QUIZ
-========================================= */
+
+/* =====================================================
+   MAP VISUAL
+===================================================== */
 
 .mapVisual{
-    height:210px;
+
+    height:190px;
+
     margin-top:18px;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
     border-radius:23px;
 
     background:
+
         radial-gradient(
             circle,
-            rgba(70,150,255,.14),
+            rgba(68,145,255,.13),
             transparent 60%
         ),
+
         #07090c;
 
-    border:1px solid var(--border);
+    border:
+        1px solid
+        rgba(255,255,255,.07);
 
-    font-size:92px;
-
-    box-shadow:
-        inset 0 0 50px rgba(70,140,255,.035);
+    font-size:85px;
 }
+
 
 .mapQuestion{
-    margin-top:18px;
+
+    margin-top:19px;
+
     font-size:20px;
-    font-weight:800;
-    line-height:1.4;
+
+    font-weight:850;
+
+    line-height:1.45;
 }
 
-/* =========================================
+
+/* =====================================================
    RESULT
-========================================= */
+===================================================== */
 
 .result{
+
     text-align:center;
+
     padding-top:30px;
 }
 
+
 .resultCircle{
-    width:108px;
-    height:108px;
+
+    width:112px;
+
+    height:112px;
+
     margin:auto;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
     border-radius:50%;
 
     background:
+
         linear-gradient(
             145deg,
-            #121a28,
+            #131c2b,
             #050608
         );
 
-    border:1px solid rgba(85,160,255,.25);
+    border:
+        1px solid
+        rgba(82,157,255,.25);
 
     box-shadow:
-        0 0 55px rgba(60,140,255,.15);
 
-    font-size:44px;
+        0 0 60px
+        rgba(64,140,255,.16);
+
+    font-size:45px;
 }
 
+
 .result h2{
+
     margin-top:20px;
+
     font-size:29px;
 }
 
+
 .score{
-    font-size:47px;
-    font-weight:900;
+
+    font-size:48px;
+
+    font-weight:950;
+
     margin:14px 0;
 }
 
+
 .resultMessage{
-    color:#8793a5;
+
+    color:#8794a6;
+
+    font-size:13px;
 }
 
+
 .stats{
+
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:9px;
+
     margin:25px 0;
 }
 
+
 .stat{
+
     padding:17px 5px;
+
     border-radius:18px;
 
     background:#0c1016;
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
 }
 
+
 .stat strong{
+
     display:block;
+
     font-size:21px;
 }
 
+
 .stat span{
+
     display:block;
-    color:#758294;
+
+    color:#748193;
+
     font-size:10px;
+
     margin-top:4px;
 }
 
+
 .resultButtons{
+
     display:grid;
+
     gap:10px;
 }
 
+
 .resultButtons button{
+
     padding:16px;
+
     border-radius:17px;
 
     background:#10151c;
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    font-weight:750;
 }
 
+
 .resultButtons .primary{
+
     background:
+
         linear-gradient(
             135deg,
-            #3f98ff,
+            #3e99ff,
             #7160ff
         );
 }
 
-/* =========================================
+
+/* =====================================================
    WRONG QUESTIONS
-========================================= */
+===================================================== */
 
 .wrongItem{
+
     padding:18px;
+
     margin-bottom:11px;
 
     border-radius:20px;
 
     background:#0c1016;
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 }
+
 
 .wrongQuestion{
+
+    font-size:14px;
+
     font-weight:800;
-    line-height:1.45;
+
+    line-height:1.5;
 }
 
+
 .correctAnswer{
+
     color:#20d69b;
-    font-size:13px;
+
+    font-size:12px;
+
+    line-height:1.5;
+
     margin-top:10px;
 }
 
-/* =========================================
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.aboutCard{
+
+    padding:22px;
+
+    border-radius:25px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(18,24,32,.97),
+            rgba(4,6,9,.99)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.4);
+}
+
+
+.aboutLogo{
+
+    width:75px;
+
+    height:75px;
+
+    margin-bottom:17px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:23px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #151f2d,
+            #050608
+        );
+
+    border:
+        1px solid
+        rgba(90,165,255,.25);
+
+    font-size:21px;
+
+    font-weight:950;
+
+    color:#62b0ff;
+}
+
+
+.aboutCard h2{
+
+    font-size:23px;
+
+    margin-bottom:9px;
+}
+
+
+.aboutCard p{
+
+    color:#8996a7;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    margin-bottom:15px;
+}
+
+
+.aboutCreator{
+
+    padding-top:15px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.07);
+}
+
+
+.aboutCreator span{
+
+    display:block;
+
+    color:#69778a;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    margin-bottom:5px;
+}
+
+
+.aboutCreator strong{
+
+    font-size:16px;
+}
+
+
+/* =====================================================
    SETTINGS
-========================================= */
+===================================================== */
 
 .settingRow{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
+    gap:20px;
 }
+
 
 .settingTitle{
-    font-weight:800;
+
+    font-weight:850;
 }
+
 
 .settingDescription{
-    color:#7e8b9d;
+
+    color:#7c899b;
+
     font-size:12px;
+
     margin-top:5px;
+
+    line-height:1.5;
 }
+
 
 .soundButton{
-    padding:10px 14px;
+
+    flex-shrink:0;
+
+    padding:
+        10px
+        14px;
+
     border-radius:12px;
+
     background:#151b24;
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 }
 
-/* =========================================
+
+/* =====================================================
    FOOTER
-========================================= */
+===================================================== */
 
 .footer{
-    text-align:center;
-    margin-top:38px;
 
-    color:#485364;
+    text-align:center;
+
+    margin-top:40px;
+
+    color:#465263;
+
     font-size:10px;
-    line-height:1.6;
+
+    line-height:1.7;
+
+    letter-spacing:.5px;
 }
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:430px){
+
+    .app{
+        padding-left:13px;
+        padding-right:13px;
+    }
+
+    .hero h2{
+        font-size:29px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .questionCard{
+        padding:19px;
+    }
+
+    .mapQuestion{
+        font-size:18px;
+    }
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================================
-     WELCOME
-========================================= -->
+
+<!-- =====================================================
+     WELCOME SCREEN
+===================================================== -->
 
 <div id="welcomeScreen">
 
-    <div class="welcomeTop">
+    <div class="welcomeSmall">
         WELCOME TO MY WORLD
     </div>
 
@@ -862,11 +1538,13 @@ header{
 </div>
 
 
+
+<!-- =====================================================
+     MAIN APP
+===================================================== -->
+
 <div class="app">
 
-<!-- =========================================
-     HEADER
-========================================= -->
 
 <header>
 
@@ -877,143 +1555,214 @@ header{
         </div>
 
         <div>
-            <h1>Study Hub</h1>
-            <p>Class 11 Humanities</p>
+
+            <h1>
+                Study Hub
+            </h1>
+
+            <p>
+                Class 11 Humanities
+            </p>
+
         </div>
 
     </div>
 
+
     <button
         class="settingsBtn"
         onclick="openSettings()">
+
         ⚙️
+
     </button>
 
 </header>
 
 
-<!-- =========================================
+
+<!-- =====================================================
      HOME
-========================================= -->
+===================================================== -->
 
 <section id="home">
 
-    <div class="hero">
 
-        <h2>
-            Welcome to<br>
-            Study Hub. 🚀
-        </h2>
+<div class="hero">
 
-        <p>
-            Learn, practice and test your knowledge
-            with a premium study experience.
-        </p>
+    <h2>
+        Welcome to<br>
+        Study Hub. 🚀
+    </h2>
 
-        <div class="creator">
-            Created by <b>MUHAMMAD BASIT</b>
+    <p>
+        A premium learning and practice platform
+        designed for Class 11 Humanities students.
+    </p>
+
+    <div class="creator">
+        Created by
+        <b>MUHAMMAD BASIT</b>
+    </div>
+
+</div>
+
+
+
+<div class="sectionTitle">
+    Subjects
+</div>
+
+
+
+<!-- POLITICAL SCIENCE -->
+
+<button
+    class="subject"
+    onclick="startPolitical()">
+
+    <div class="subjectInside">
+
+        <div class="subjectIcon">
+            🏛️
+        </div>
+
+        <div>
+
+            <h3>
+                Political Science
+            </h3>
+
+            <p>
+                51-question MCQ test
+            </p>
+
         </div>
 
     </div>
 
+</button>
 
-    <div class="sectionTitle">
-        Subjects
+
+
+<!-- MAPS -->
+
+<button
+    class="subject"
+    onclick="openMaps()">
+
+    <div class="subjectInside">
+
+        <div class="subjectIcon">
+            🗺️
+        </div>
+
+        <div>
+
+            <h3>
+                Geography Maps
+            </h3>
+
+            <p>
+                India & World — 100 questions each
+            </p>
+
+        </div>
+
     </div>
 
+</button>
 
-    <!-- POLITICAL SCIENCE -->
 
-    <button
-        class="subject"
-        onclick="startPoliticalScience()">
 
-        <div class="subjectInside">
+<div class="sectionTitle">
+    Practice
+</div>
 
-            <div class="subjectIcon">
-                🏛️
-            </div>
 
-            <div>
-                <h3>Political Science</h3>
-                <p>
-                    51-question MCQ test
-                </p>
-            </div>
+
+<button
+    class="subject"
+    onclick="showWrong()">
+
+    <div class="subjectInside">
+
+        <div class="subjectIcon">
+            ❌
+        </div>
+
+        <div>
+
+            <h3>
+                Wrong Questions
+            </h3>
+
+            <p>
+                Revise your previous mistakes
+            </p>
 
         </div>
 
-    </button>
-
-
-    <!-- MAPS -->
-
-    <button
-        class="subject"
-        onclick="openMaps()">
-
-        <div class="subjectInside">
-
-            <div class="subjectIcon">
-                🗺️
-            </div>
-
-            <div>
-                <h3>Maps</h3>
-                <p>
-                    India & World map quizzes
-                </p>
-            </div>
-
-        </div>
-
-    </button>
-
-
-    <div class="sectionTitle">
-        Practice
     </div>
 
+</button>
 
-    <button
-        class="subject"
-        onclick="showWrong()">
 
-        <div class="subjectInside">
 
-            <div class="subjectIcon">
-                ❌
-            </div>
+<!-- ABOUT -->
 
-            <div>
-                <h3>Wrong Questions</h3>
-                <p>
-                    Revise your mistakes
-                </p>
-            </div>
+<button
+    class="subject"
+    onclick="openAbout()">
+
+    <div class="subjectInside">
+
+        <div class="subjectIcon">
+            ℹ️
+        </div>
+
+        <div>
+
+            <h3>
+                About Study Hub
+            </h3>
+
+            <p>
+                About the app & its creator
+            </p>
 
         </div>
 
-    </button>
+    </div>
+
+</button>
+
 
 </section>
 
 
-<!-- =========================================
-     POLITICAL SCIENCE QUIZ
-========================================= -->
 
-<section id="quiz" class="hidden">
+<!-- =====================================================
+     POLITICAL SCIENCE QUIZ
+===================================================== -->
+
+<section
+    id="quiz"
+    class="hidden">
 
     <button
         class="back"
         onclick="goHome()">
+
         ← Back
+
     </button>
+
 
     <div class="quizTitle">
         Political Science
     </div>
+
 
     <div class="progressInfo">
 
@@ -1027,6 +1776,7 @@ header{
 
     </div>
 
+
     <div class="progress">
         <div id="progressBar"></div>
     </div>
@@ -1037,25 +1787,34 @@ header{
         <div
             class="qNumber"
             id="qNumber">
+
             QUESTION 1
+
         </div>
+
 
         <div
             class="question"
             id="question">
+
             Loading...
+
         </div>
+
 
         <div
             class="options"
             id="options">
         </div>
 
+
         <button
-            id="next"
             class="next hidden"
-            onclick="nextQuestion()">
+            id="next"
+            onclick="nextPolitical()">
+
             NEXT QUESTION →
+
         </button>
 
     </div>
@@ -1063,305 +1822,479 @@ header{
 </section>
 
 
-<!-- =========================================
+
+<!-- =====================================================
      MAP MENU
-========================================= -->
+===================================================== -->
 
-<section id="maps" class="hidden">
+<section
+    id="maps"
+    class="hidden">
 
-    <button
-        class="back"
-        onclick="goHome()">
-        ← Back
-    </button>
 
-    <div class="quizTitle">
-        Maps 🗺️
+<button
+    class="back"
+    onclick="goHome()">
+
+    ← Back
+
+</button>
+
+
+<div class="quizTitle">
+    Geography Maps 🗺️
+</div>
+
+
+<p class="mapDescription">
+
+    Explore India and the world through
+    location-based geography questions.
+    Each section contains 100 questions.
+
+</p>
+
+
+
+<button
+    class="mapCard"
+    onclick="startIndia()">
+
+    <div class="mapEmoji">
+        🇮🇳
     </div>
 
-    <p class="mapDescription">
-        Identify places and test your knowledge
-        of India and the world.
+    <h3>
+        India Geography
+    </h3>
+
+    <p>
+        100 questions • States • Cities • Rivers • Mountains • Capitals
     </p>
 
-
-    <button
-        class="mapCard"
-        onclick="startIndiaMap()">
-
-        <div class="mapEmoji">
-            🇮🇳
-        </div>
-
-        <h3>
-            India Map Quiz
-        </h3>
-
-        <p>
-            States and Union Territories
-        </p>
-
-    </button>
+</button>
 
 
-    <button
-        class="mapCard"
-        onclick="startWorldMap()">
 
-        <div class="mapEmoji">
-            🌍
-        </div>
+<button
+    class="mapCard"
+    onclick="startWorld()">
 
-        <h3>
-            World Map Quiz
-        </h3>
+    <div class="mapEmoji">
+        🌍
+    </div>
 
-        <p>
-            Countries around the world
-        </p>
+    <h3>
+        World Geography
+    </h3>
 
-    </button>
+    <p>
+        100 questions • Countries • Capitals • Continents • Landmarks
+    </p>
+
+</button>
+
 
 </section>
 
 
-<!-- =========================================
+
+<!-- =====================================================
      MAP QUIZ
-========================================= -->
+===================================================== -->
 
-<section id="mapQuiz" class="hidden">
-
-    <button
-        class="back"
-        onclick="openMaps()">
-        ← Back
-    </button>
-
-    <div
-        class="quizTitle"
-        id="mapTitle">
-        Map Quiz
-    </div>
-
-    <div class="progressInfo">
-
-        <span id="mapCounter">
-            Question 1 / 10
-        </span>
-
-        <span>
-            Geography
-        </span>
-
-    </div>
-
-    <div class="progress">
-        <div id="mapProgress"></div>
-    </div>
+<section
+    id="mapQuiz"
+    class="hidden">
 
 
-    <div class="questionCard">
+<button
+    class="back"
+    onclick="openMaps()">
 
-        <div
-            class="mapVisual"
-            id="mapVisual">
-            🇮🇳
-        </div>
+    ← Back
 
-        <div
-            class="mapQuestion"
-            id="mapQuestion">
-            Loading...
-        </div>
+</button>
 
-        <div
-            class="options"
-            id="mapOptions">
-        </div>
 
-        <button
-            id="mapNext"
-            class="next hidden"
-            onclick="nextMapQuestion()">
-            NEXT →
-        </button>
+<div
+    class="quizTitle"
+    id="mapTitle">
 
-    </div>
+    India Geography
+
+</div>
+
+
+<div class="progressInfo">
+
+    <span id="mapCounter">
+        Question 1 / 100
+    </span>
+
+    <span>
+        Geography
+    </span>
+
+</div>
+
+
+<div class="progress">
+    <div id="mapProgress"></div>
+</div>
+
+
+<div class="questionCard">
+
+
+<div
+    class="mapVisual"
+    id="mapVisual">
+
+    🇮🇳
+
+</div>
+
+
+<div
+    class="mapQuestion"
+    id="mapQuestion">
+
+    Loading...
+
+</div>
+
+
+<div
+    class="options"
+    id="mapOptions">
+</div>
+
+
+<button
+    class="next hidden"
+    id="mapNext"
+    onclick="nextMap()">
+
+    NEXT →
+
+</button>
+
+
+</div>
 
 </section>
 
 
-<!-- =========================================
+
+<!-- =====================================================
      RESULT
-========================================= -->
+===================================================== -->
 
-<section id="result" class="hidden">
-
-    <div class="result">
-
-        <div class="resultCircle">
-            🏆
-        </div>
-
-        <h2>
-            Test Completed!
-        </h2>
-
-        <div
-            class="score"
-            id="finalScore">
-            0 / 51
-        </div>
-
-        <p
-            class="resultMessage"
-            id="resultMessage">
-            Great work!
-        </p>
+<section
+    id="result"
+    class="hidden">
 
 
-        <div class="stats">
-
-            <div class="stat">
-                <strong id="correct">
-                    0
-                </strong>
-                <span>
-                    Correct
-                </span>
-            </div>
-
-            <div class="stat">
-                <strong id="wrong">
-                    0
-                </strong>
-                <span>
-                    Wrong
-                </span>
-            </div>
-
-            <div class="stat">
-                <strong id="percent">
-                    0%
-                </strong>
-                <span>
-                    Score
-                </span>
-            </div>
-
-        </div>
+<div class="result">
 
 
-        <div class="resultButtons">
+<div class="resultCircle">
+    🏆
+</div>
 
-            <button
-                class="primary"
-                onclick="retryLastQuiz()">
-                🔄 RETRY TEST
-            </button>
 
-            <button
-                onclick="showWrong()">
-                ❌ WRONG QUESTIONS
-            </button>
+<h2>
+    Test Completed!
+</h2>
 
-            <button
-                onclick="goHome()">
-                🏠 HOME
-            </button>
 
-        </div>
+<div
+    class="score"
+    id="finalScore">
 
-    </div>
+    0 / 100
+
+</div>
+
+
+<p
+    class="resultMessage"
+    id="resultMessage">
+
+    Great work!
+
+</p>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+    <strong id="correct">
+        0
+    </strong>
+
+    <span>
+        Correct
+    </span>
+
+</div>
+
+
+<div class="stat">
+
+    <strong id="wrong">
+        0
+    </strong>
+
+    <span>
+        Wrong
+    </span>
+
+</div>
+
+
+<div class="stat">
+
+    <strong id="percent">
+        0%
+    </strong>
+
+    <span>
+        Score
+    </span>
+
+</div>
+
+
+</div>
+
+
+<div class="resultButtons">
+
+
+<button
+    class="primary"
+    onclick="retryLast()">
+
+    🔄 RETRY TEST
+
+</button>
+
+
+<button
+    onclick="showWrong()">
+
+    ❌ WRONG QUESTIONS
+
+</button>
+
+
+<button
+    onclick="goHome()">
+
+    🏠 HOME
+
+</button>
+
+
+</div>
+
+
+</div>
 
 </section>
 
 
-<!-- =========================================
+
+<!-- =====================================================
      WRONG QUESTIONS
-========================================= -->
+===================================================== -->
 
 <section
     id="wrongPage"
     class="hidden">
 
-    <button
-        class="back"
-        onclick="goHome()">
-        ← Back
-    </button>
 
-    <div class="quizTitle">
-        Wrong Questions
-    </div>
+<button
+    class="back"
+    onclick="goHome()">
 
-    <p class="mapDescription">
-        Revise the questions you answered incorrectly.
-    </p>
+    ← Back
 
-    <div id="wrongList">
-    </div>
+</button>
+
+
+<div class="quizTitle">
+    Wrong Questions
+</div>
+
+
+<p class="mapDescription">
+    Revise questions that you answered incorrectly.
+</p>
+
+
+<div id="wrongList"></div>
+
 
 </section>
 
 
-<!-- =========================================
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+    id="about"
+    class="hidden">
+
+
+<button
+    class="back"
+    onclick="goHome()">
+
+    ← Back
+
+</button>
+
+
+<div class="quizTitle">
+    About
+</div>
+
+
+<div
+    class="aboutCard"
+    style="margin-top:20px">
+
+
+<div class="aboutLogo">
+    SH
+</div>
+
+
+<h2>
+    Study Hub
+</h2>
+
+
+<p>
+
+    Study Hub is a learning and practice platform
+    created for students who want a simple,
+    focused and premium study experience.
+
+</p>
+
+
+<p>
+
+    The app currently focuses on
+    Political Science and Geography Maps,
+    with interactive quizzes, instant results,
+    score tracking and revision of wrong questions.
+
+</p>
+
+
+<div class="aboutCreator">
+
+    <span>
+        CREATED BY
+    </span>
+
+    <strong>
+        MUHAMMAD BASIT
+    </strong>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
      SETTINGS
-========================================= -->
+===================================================== -->
 
 <section
     id="settings"
     class="hidden">
 
-    <button
-        class="back"
-        onclick="goHome()">
-        ← Back
-    </button>
 
-    <div class="quizTitle">
-        Settings
-    </div>
+<button
+    class="back"
+    onclick="goHome()">
+
+    ← Back
+
+</button>
 
 
-    <div
-        class="questionCard"
-        style="margin-top:20px">
+<div class="quizTitle">
+    Settings
+</div>
 
-        <div class="settingRow">
 
-            <div>
+<div
+    class="questionCard">
 
-                <div class="settingTitle">
-                    Sound Effects
-                </div>
 
-                <div class="settingDescription">
-                    Correct, wrong and button sounds
-                </div>
+<div class="settingRow">
 
-            </div>
 
-            <button
-                id="soundButton"
-                class="soundButton"
-                onclick="toggleSound()">
-                🔊 ON
-            </button>
+<div>
 
-        </div>
+<div class="settingTitle">
+    Sound Effects
+</div>
 
-    </div>
+<div class="settingDescription">
+    Correct, wrong and interface sounds
+</div>
+
+</div>
+
+
+<button
+    class="soundButton"
+    id="soundButton"
+    onclick="toggleSound()">
+
+    🔊 ON
+
+</button>
+
+
+</div>
+
+
+</div>
+
 
 </section>
 
 
+
 <div class="footer">
-    STUDY HUB • MUHAMMAD BASIT<br>
+
+    STUDY HUB • MUHAMMAD BASIT
+    <br>
     CLASS 11 HUMANITIES
-</div>
 
 </div>
+
+
+</div>
+
 
 
 <script>
@@ -1370,7 +2303,7 @@ header{
    POLITICAL SCIENCE — 51 QUESTIONS
 ===================================================== */
 
-const politicalScienceQuestions = [
+const politicalQuestions = [
 
 {
 q:"What is a Constitution?",
@@ -1379,9 +2312,7 @@ o:[
 "A political party",
 "A government department",
 "A court"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Which organ of government makes laws?",
@@ -1390,9 +2321,7 @@ o:[
 "Legislature",
 "Judiciary",
 "Election Commission"
-],
-a:1
-},
+],a:1},
 
 {
 q:"What is democracy?",
@@ -1401,9 +2330,7 @@ o:[
 "Rule by the military",
 "Government by the people",
 "Rule by judges"
-],
-a:2
-},
+],a:2},
 
 {
 q:"Which institution interprets the Constitution?",
@@ -1412,9 +2339,7 @@ o:[
 "Judiciary",
 "Executive",
 "Political party"
-],
-a:1
-},
+],a:1},
 
 {
 q:"What does equality mean?",
@@ -1423,9 +2348,7 @@ o:[
 "Same job for everyone",
 "Same income for everyone",
 "Same opinion for everyone"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is a Fundamental Right?",
@@ -1434,9 +2357,7 @@ o:[
 "A basic right guaranteed by the Constitution",
 "A government scheme",
 "A political slogan"
-],
-a:1
-},
+],a:1},
 
 {
 q:"Which body conducts elections in India?",
@@ -1445,9 +2366,7 @@ o:[
 "Election Commission of India",
 "Parliament",
 "President's Secretariat"
-],
-a:1
-},
+],a:1},
 
 {
 q:"The Indian Parliament consists of:",
@@ -1456,9 +2375,7 @@ o:[
 "Rajya Sabha only",
 "President and two Houses",
 "Supreme Court and Lok Sabha"
-],
-a:2
-},
+],a:2},
 
 {
 q:"The lower house of Parliament is:",
@@ -1467,9 +2384,7 @@ o:[
 "Lok Sabha",
 "Vidhan Parishad",
 "Gram Sabha"
-],
-a:1
-},
+],a:1},
 
 {
 q:"The upper house of Parliament is:",
@@ -1478,9 +2393,7 @@ o:[
 "Rajya Sabha",
 "Vidhan Sabha",
 "Gram Panchayat"
-],
-a:1
-},
+],a:1},
 
 {
 q:"What is secularism?",
@@ -1489,9 +2402,7 @@ o:[
 "Equal respect for all religions",
 "Ending all religions",
 "Rule by religious leaders"
-],
-a:1
-},
+],a:1},
 
 {
 q:"What is justice?",
@@ -1500,9 +2411,7 @@ o:[
 "Political power",
 "Military control",
 "Personal wealth"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What does liberty refer to?",
@@ -1511,9 +2420,7 @@ o:[
 "Freedom from every law",
 "Freedom only for leaders",
 "Freedom to harm others"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is political equality?",
@@ -1522,9 +2429,7 @@ o:[
 "Equal wealth",
 "Equal houses",
 "Equal occupations"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is a republic?",
@@ -1533,9 +2438,7 @@ o:[
 "A state with an elected head of state",
 "A military government",
 "A colonial government"
-],
-a:1
-},
+],a:1},
 
 {
 q:"Who is the constitutional head of India?",
@@ -1544,9 +2447,7 @@ o:[
 "President",
 "Chief Justice",
 "Speaker"
-],
-a:1
-},
+],a:1},
 
 {
 q:"Who heads the Union Council of Ministers?",
@@ -1555,9 +2456,7 @@ o:[
 "Prime Minister",
 "Chief Justice",
 "Speaker"
-],
-a:1
-},
+],a:1},
 
 {
 q:"What is federalism?",
@@ -1566,9 +2465,7 @@ o:[
 "Rule by one person",
 "Rule by judges",
 "Absence of government"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is citizenship?",
@@ -1577,9 +2474,7 @@ o:[
 "Ownership of land",
 "Membership of a political party",
 "Government employment"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is political participation?",
@@ -1588,9 +2483,7 @@ o:[
 "Watching television",
 "Working privately",
 "Studying alone"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is universal adult franchise?",
@@ -1599,9 +2492,7 @@ o:[
 "Voting only for rich people",
 "Voting only for officials",
 "Voting only for students"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is the rule of law?",
@@ -1610,9 +2501,7 @@ o:[
 "Only citizens follow law",
 "Only politicians follow law",
 "Judges are above law"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is representation?",
@@ -1621,9 +2510,7 @@ o:[
 "Government choosing citizens",
 "Judges choosing ministers",
 "Officials choosing voters"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is accountability?",
@@ -1632,9 +2519,7 @@ o:[
 "Having unlimited power",
 "Being above the law",
 "Keeping decisions secret"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is a political party?",
@@ -1643,9 +2528,7 @@ o:[
 "A court",
 "A government office",
 "A school"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is an opposition party?",
@@ -1654,9 +2537,7 @@ o:[
 "A ministry",
 "A court",
 "An election officer"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Why are elections important?",
@@ -1665,9 +2546,7 @@ o:[
 "They remove all laws",
 "They end debate",
 "They eliminate government"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is public opinion?",
@@ -1676,9 +2555,7 @@ o:[
 "Only a judge's opinion",
 "Only a minister's opinion",
 "A court order"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is constitutionalism?",
@@ -1687,9 +2564,7 @@ o:[
 "Unlimited government power",
 "Rule without laws",
 "Military rule"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is human dignity?",
@@ -1698,9 +2573,7 @@ o:[
 "Political popularity",
 "Government rank",
 "Economic wealth"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is discrimination?",
@@ -1709,9 +2582,7 @@ o:[
 "Equal treatment",
 "Voting",
 "Representation"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Article 15 deals mainly with:",
@@ -1720,9 +2591,7 @@ o:[
 "Emergency",
 "Election of President",
 "Finance"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Article 17 deals with:",
@@ -1731,9 +2600,7 @@ o:[
 "Freedom of religion",
 "Right to property",
 "Election procedure"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Article 18 deals with:",
@@ -1742,9 +2609,7 @@ o:[
 "Right to education",
 "Emergency",
 "Citizenship"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Fundamental Rights are mainly found in:",
@@ -1753,9 +2618,7 @@ o:[
 "Part I",
 "Part IX",
 "Schedule VIII"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Directive Principles are:",
@@ -1764,9 +2627,7 @@ o:[
 "Criminal laws",
 "Court judgments",
 "Election symbols"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Fundamental Duties are included in:",
@@ -1775,9 +2636,7 @@ o:[
 "Part II",
 "Part VI",
 "Part X"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is social justice?",
@@ -1786,9 +2645,7 @@ o:[
 "Giving power to one group",
 "Ending elections",
 "Removing courts"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is freedom of speech?",
@@ -1797,9 +2654,7 @@ o:[
 "Freedom to break every law",
 "Freedom only for politicians",
 "Freedom to threaten anyone"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is majority rule?",
@@ -1808,9 +2663,7 @@ o:[
 "Minority has no rights",
 "One person decides everything",
 "Courts make every political decision"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Why are minority rights important?",
@@ -1819,9 +2672,7 @@ o:[
 "To give unlimited power",
 "To end democracy",
 "To remove elections"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is decentralisation?",
@@ -1830,9 +2681,7 @@ o:[
 "Centralising all power",
 "Ending local government",
 "Removing elections"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Panchayati Raj is associated with:",
@@ -1841,9 +2690,7 @@ o:[
 "Union Parliament",
 "Supreme Court",
 "Foreign policy"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Municipalities mainly govern:",
@@ -1852,9 +2699,7 @@ o:[
 "International organisations",
 "State courts",
 "Parliament"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Political theory is concerned with:",
@@ -1863,9 +2708,7 @@ o:[
 "Weather",
 "Mathematics",
 "Biology"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Which is a core concept in political theory?",
@@ -1874,9 +2717,7 @@ o:[
 "Photosynthesis",
 "Gravity",
 "Digestion"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Why is liberty important?",
@@ -1885,9 +2726,7 @@ o:[
 "It removes all responsibilities",
 "It makes laws unnecessary",
 "It gives unlimited power"
-],
-a:0
-},
+],a:0},
 
 {
 q:"Why is equality important?",
@@ -1896,9 +2735,7 @@ o:[
 "It means everyone is identical",
 "It guarantees equal income",
 "It removes differences"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is authority?",
@@ -1907,9 +2744,7 @@ o:[
 "Physical strength only",
 "Wealth only",
 "Popularity"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is power?",
@@ -1918,9 +2753,7 @@ o:[
 "Only physical force",
 "Only money",
 "Only elections"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is the state?",
@@ -1929,9 +2762,7 @@ o:[
 "Only a city",
 "Only a political party",
 "Only a government office"
-],
-a:0
-},
+],a:0},
 
 {
 q:"What is sovereignty?",
@@ -1940,290 +2771,303 @@ o:[
 "Private wealth",
 "Election campaigning",
 "Judicial punishment"
-],
-a:0
-}
+],a:0}
 
 ];
 
 
 /* =====================================================
-   INDIA MAP QUESTIONS
+   INDIA GEOGRAPHY — 100
 ===================================================== */
 
 const indiaQuestions=[
 
-{
-icon:"🇮🇳",
-q:"Which state is known as the Land of the Rising Sun?",
-o:[
-"Arunachal Pradesh",
-"Gujarat",
-"Kerala",
-"Punjab"
-],
-a:0
-},
+["🇮🇳","What is the capital of India?",["New Delhi","Mumbai","Kolkata","Chennai"],0],
+["🇮🇳","Which is the largest Indian state by area?",["Rajasthan","Maharashtra","Uttar Pradesh","Gujarat"],0],
+["🇮🇳","Which is the smallest Indian state by area?",["Goa","Sikkim","Tripura","Manipur"],0],
+["🇮🇳","Which state has Mumbai as its capital?",["Maharashtra","Gujarat","Goa","Karnataka"],0],
+["🇮🇳","Which state has Jaipur as its capital?",["Rajasthan","Punjab","Haryana","Gujarat"],0],
+["🇮🇳","Which state has Lucknow as its capital?",["Uttar Pradesh","Bihar","Jharkhand","Madhya Pradesh"],0],
+["🇮🇳","Which state has Srinagar and Jammu as its major seasonal capitals?",["Jammu and Kashmir","Himachal Pradesh","Uttarakhand","Punjab"],0],
+["🇮🇳","Which state is known for its backwaters?",["Kerala","Goa","Tamil Nadu","Odisha"],0],
+["🇮🇳","Which state is famous for Kaziranga National Park?",["Assam","West Bengal","Bihar","Odisha"],0],
+["🇮🇳","Which state contains the Thar Desert?",["Rajasthan","Gujarat","Punjab","Haryana"],0],
 
-{
-icon:"🇮🇳",
-q:"Which is the largest Indian state by area?",
-o:[
-"Maharashtra",
-"Rajasthan",
-"Madhya Pradesh",
-"Uttar Pradesh"
-],
-a:1
-},
+["🇮🇳","Which river is known as the lifeline of northern India?",["Ganga","Narmada","Godavari","Tapi"],0],
+["🇮🇳","The Brahmaputra flows through which northeastern state?",["Assam","Manipur","Tripura","Mizoram"],0],
+["🇮🇳","Which river originates near Amarkantak?",["Narmada","Ganga","Yamuna","Kaveri"],0],
+["🇮🇳","Which river is called Dakshin Ganga?",["Godavari","Krishna","Kaveri","Tapi"],0],
+["🇮🇳","Which river flows through Delhi?",["Yamuna","Ganga","Narmada","Godavari"],0],
+["🇮🇳","Which major river flows through Kashmir Valley?",["Jhelum","Ganga","Yamuna","Kaveri"],0],
+["🇮🇳","Which river is associated with Varanasi?",["Ganga","Narmada","Mahanadi","Tapi"],0],
+["🇮🇳","Which river forms a major delta in West Bengal?",["Ganga-Brahmaputra system","Narmada","Tapi","Sabarmati"],0],
+["🇮🇳","Which river flows westward into the Arabian Sea?",["Narmada","Ganga","Yamuna","Mahanadi"],0],
+["🇮🇳","Which river is associated with Gujarat?",["Sabarmati","Brahmaputra","Kaveri","Teesta"],0],
 
-{
-icon:"🇮🇳",
-q:"The Sundarbans are mainly associated with which state?",
-o:[
-"West Bengal",
-"Punjab",
-"Goa",
-"Haryana"
-],
-a:0
-},
+["🏔️","The Himalayas are located mainly in which part of India?",["North","South","West only","Central only"],0],
+["🏔️","Which is a major Himalayan state?",["Himachal Pradesh","Goa","Kerala","Tamil Nadu"],0],
+["🏔️","Which state is famous for Nanda Devi?",["Uttarakhand","Punjab","Gujarat","Bihar"],0],
+["🏔️","Which range lies in northern India?",["Himalayas","Aravallis","Eastern Ghats","Western Ghats"],0],
+["🏔️","The Aravalli Range is strongly associated with which state?",["Rajasthan","Assam","Kerala","Bihar"],0],
+["🏔️","The Western Ghats run along which coast?",["Western coast","Eastern coast","Northern border","Northeastern border"],0],
+["🏔️","The Eastern Ghats are located along which side of India?",["Eastern side","Western side","Northern side","Northwestern side"],0],
+["🏔️","Which Indian region contains Ladakh?",["Himalayan region","Deccan Plateau","Coastal plain","Thar Desert"],0],
+["🏔️","Which is a famous mountain pass region in Jammu and Kashmir?",["Zoji La","Nathu La","Palghat Gap","Bhor Ghat"],0],
+["🏔️","Nathu La is located in which state?",["Sikkim","Assam","Arunachal Pradesh","Uttarakhand"],0],
 
-{
-icon:"🇮🇳",
-q:"Which state lies on India's western coast?",
-o:[
-"Gujarat",
-"Bihar",
-"Assam",
-"Jharkhand"
-],
-a:0
-},
+["🌊","Which sea lies west of India?",["Arabian Sea","Bay of Bengal","Red Sea","Caspian Sea"],0],
+["🌊","Which bay lies east of India?",["Bay of Bengal","Arabian Sea","Persian Gulf","Black Sea"],0],
+["🌊","Which ocean surrounds India to the south?",["Indian Ocean","Pacific Ocean","Atlantic Ocean","Arctic Ocean"],0],
+["🌊","Which island group lies in the Arabian Sea?",["Lakshadweep","Andaman and Nicobar","Sundarbans","Diu"],0],
+["🌊","Which island group lies in the Bay of Bengal?",["Andaman and Nicobar Islands","Lakshadweep","Daman","Diu"],0],
+["🌊","Port Blair is associated with which islands?",["Andaman and Nicobar Islands","Lakshadweep","Diu","Goa"],0],
+["🌊","Kochi is located on which coast?",["Malabar Coast","Coromandel Coast","Konkan Coast only","Odisha Coast"],0],
+["🌊","Chennai lies on which coast?",["Coromandel Coast","Malabar Coast","Konkan Coast","Kathiawar Coast"],0],
+["🌊","Goa is located on which coast?",["Konkan coast","Coromandel coast","Malabar coast only","Odisha coast"],0],
+["🌊","Which state has a long coastline on the Arabian Sea?",["Gujarat","Bihar","Punjab","Haryana"],0],
 
-{
-icon:"🇮🇳",
-q:"Srinagar is a major city in:",
-o:[
-"Jammu and Kashmir",
-"Gujarat",
-"Odisha",
-"Tamil Nadu"
-],
-a:0
-},
+["🏙️","Which city is the capital of West Bengal?",["Kolkata","Bhubaneswar","Ranchi","Patna"],0],
+["🏙️","Which city is the capital of Bihar?",["Patna","Ranchi","Lucknow","Kolkata"],0],
+["🏙️","Which city is the capital of Odisha?",["Bhubaneswar","Cuttack","Kolkata","Ranchi"],0],
+["🏙️","Which city is the capital of Karnataka?",["Bengaluru","Mysuru","Chennai","Hyderabad"],0],
+["🏙️","Which city is the capital of Tamil Nadu?",["Chennai","Bengaluru","Kochi","Hyderabad"],0],
+["🏙️","Which city is the capital of Telangana?",["Hyderabad","Bengaluru","Chennai","Vijayawada"],0],
+["🏙️","Which city is the capital of Andhra Pradesh?",["Amaravati","Hyderabad","Chennai","Visakhapatnam"],0],
+["🏙️","Which city is the capital of Kerala?",["Thiruvananthapuram","Kochi","Kozhikode","Kollam"],0],
+["🏙️","Which city is the capital of Goa?",["Panaji","Margao","Vasco da Gama","Mapusa"],0],
+["🏙️","Which city is the capital of Punjab?",["Chandigarh","Amritsar","Ludhiana","Patiala"],0],
 
-{
-icon:"🇮🇳",
-q:"Which state is famous for its backwaters?",
-o:[
-"Kerala",
-"Punjab",
-"Haryana",
-"Bihar"
-],
-a:0
-},
+["🗺️","Which state is located in India's northeast?",["Arunachal Pradesh","Gujarat","Goa","Rajasthan"],0],
+["🗺️","Which northeastern state has Imphal as its capital?",["Manipur","Mizoram","Tripura","Nagaland"],0],
+["🗺️","Which northeastern state has Aizawl as its capital?",["Mizoram","Manipur","Assam","Nagaland"],0],
+["🗺️","Which northeastern state has Agartala as its capital?",["Tripura","Mizoram","Manipur","Sikkim"],0],
+["🗺️","Which northeastern state has Kohima as its capital?",["Nagaland","Manipur","Mizoram","Assam"],0],
+["🗺️","Which northeastern state has Shillong as its capital?",["Meghalaya","Assam","Tripura","Sikkim"],0],
+["🗺️","Which northeastern state has Gangtok as its capital?",["Sikkim","Nagaland","Tripura","Mizoram"],0],
+["🗺️","Which northeastern state has Itanagar as its capital?",["Arunachal Pradesh","Assam","Nagaland","Sikkim"],0],
+["🗺️","Which northeastern state is known for the Brahmaputra valley?",["Assam","Goa","Gujarat","Punjab"],0],
+["🗺️","Which state shares an international border with Myanmar?",["Manipur","Punjab","Rajasthan","Gujarat"],0],
 
-{
-icon:"🇮🇳",
-q:"Which state is famous for Kaziranga National Park?",
-o:[
-"Assam",
-"Bihar",
-"Punjab",
-"Gujarat"
-],
-a:0
-},
+["🌾","Punjab is famous for which major agricultural crop combination?",["Wheat and rice","Coffee and cocoa","Tea and rubber","Coconut and spices"],0],
+["🌾","Which state is a major producer of tea?",["Assam","Punjab","Haryana","Rajasthan"],0],
+["🌾","Which state is famous for coffee plantations?",["Karnataka","Punjab","Bihar","Haryana"],0],
+["🌾","Which state is strongly associated with cotton production?",["Gujarat","Sikkim","Meghalaya","Himachal Pradesh"],0],
+["🌾","Which state is famous for spices and plantations?",["Kerala","Punjab","Haryana","Bihar"],0],
+["🌾","Which region is known for apple production?",["Himachal Pradesh","Rajasthan","Gujarat","Goa"],0],
+["🌾","Which state is known for the Green Revolution?",["Punjab","Goa","Sikkim","Mizoram"],0],
+["🌾","Which state is a major sugarcane producer?",["Uttar Pradesh","Goa","Sikkim","Arunachal Pradesh"],0],
+["🌾","Which state is famous for Darjeeling tea?",["West Bengal","Kerala","Punjab","Gujarat"],0],
+["🌾","Which state is famous for saffron cultivation in Kashmir?",["Jammu and Kashmir","Rajasthan","Goa","Odisha"],0],
 
-{
-icon:"🇮🇳",
-q:"Mumbai is the capital of:",
-o:[
-"Maharashtra",
-"Gujarat",
-"Goa",
-"Karnataka"
-],
-a:0
-},
+["🏛️","The Taj Mahal is located in:",["Agra","Delhi","Jaipur","Lucknow"],0],
+["🏛️","The Gateway of India is located in:",["Mumbai","Delhi","Kolkata","Chennai"],0],
+["🏛️","The Charminar is located in:",["Hyderabad","Bengaluru","Lucknow","Jaipur"],0],
+["🏛️","The Golden Temple is located in:",["Amritsar","Patiala","Chandigarh","Ludhiana"],0],
+["🏛️","The Konark Sun Temple is in:",["Odisha","Bihar","Gujarat","Rajasthan"],0],
+["🏛️","The Red Fort is located in:",["Delhi","Agra","Jaipur","Lucknow"],0],
+["🏛️","Hawa Mahal is located in:",["Jaipur","Jodhpur","Udaipur","Bikaner"],0],
+["🏛️","Sanchi Stupa is in:",["Madhya Pradesh","Rajasthan","Gujarat","Bihar"],0],
+["🏛️","Ajanta Caves are located in:",["Maharashtra","Gujarat","Odisha","Karnataka"],0],
+["🏛️","Ellora Caves are located in:",["Maharashtra","Kerala","Punjab","Assam"],0],
 
-{
-icon:"🇮🇳",
-q:"The Thar Desert is mainly located in:",
-o:[
-"Rajasthan",
-"Assam",
-"Kerala",
-"Odisha"
-],
-a:0
-},
+["🚂","Which city is known as India's financial capital?",["Mumbai","Delhi","Kolkata","Chennai"],0],
+["🚂","Which city is known as the Silicon Valley of India?",["Bengaluru","Mumbai","Kolkata","Patna"],0],
+["🚂","Which city is famous for its IT industry and Charminar?",["Hyderabad","Jaipur","Agra","Amritsar"],0],
+["🚂","Which city is famous for Dal Lake?",["Srinagar","Shimla","Dehradun","Leh"],0],
+["🚂","Which city is famous for the backwaters of Kerala region?",["Alappuzha","Jaipur","Patna","Kanpur"],0],
+["🚂","Which city is associated with the Howrah Bridge?",["Kolkata","Mumbai","Chennai","Delhi"],0],
+["🚂","Which city is famous for the Marina Beach?",["Chennai","Mumbai","Kochi","Goa"],0],
+["🚂","Which city is famous for the Meenakshi Temple?",["Madurai","Chennai","Bengaluru","Hyderabad"],0],
+["🚂","Which city is associated with the Golden Temple?",["Amritsar","Delhi","Agra","Jaipur"],0],
+["🚂","Which city is located near the Ganga and Yamuna confluence region?",["Prayagraj","Jaipur","Surat","Pune"],0],
 
-{
-icon:"🇮🇳",
-q:"Which state is famous for its Himalayan landscape?",
-o:[
-"Himachal Pradesh",
-"Goa",
-"Kerala",
-"Punjab"
-],
-a:0
-}
+["📍","Which state borders Pakistan?",["Punjab","Bihar","Odisha","Jharkhand"],0],
+["📍","Which Indian state borders Nepal?",["Uttarakhand","Goa","Tamil Nadu","Maharashtra"],0],
+["📍","Which state borders Bhutan?",["West Bengal","Gujarat","Kerala","Punjab"],0],
+["📍","Which state borders Bangladesh?",["Tripura","Goa","Rajasthan","Haryana"],0],
+["📍","Which state borders China?",["Himachal Pradesh","Goa","Bihar","West Bengal"],0],
+["📍","Which state is closest to Sri Lanka across the Palk Strait?",["Tamil Nadu","Gujarat","Punjab","Assam"],0],
+["📍","Which state shares a border with Nepal and Tibet/China region?",["Uttarakhand","Goa","Kerala","Odisha"],0],
+["📍","Which state lies between the Arabian Sea and the Thar region?",["Gujarat","Bihar","Assam","Jharkhand"],0],
+["📍","Which Indian state is farthest south on the mainland?",["Tamil Nadu","Kerala","Karnataka","Andhra Pradesh"],0],
+["📍","Which state is located on India's easternmost side?",["Arunachal Pradesh","Gujarat","Rajasthan","Goa"],0]
 
 ];
 
 
 /* =====================================================
-   WORLD MAP QUESTIONS
+   WORLD GEOGRAPHY — 100
 ===================================================== */
 
 const worldQuestions=[
 
-{
-icon:"🌍",
-q:"Which is the largest country in the world by area?",
-o:[
-"Canada",
-"Russia",
-"China",
-"USA"
-],
-a:1
-},
+["🌍","Which is the largest country by area?",["Russia","Canada","China","USA"],0],
+["🌍","Which is the smallest country in the world?",["Vatican City","Monaco","Malta","San Marino"],0],
+["🌍","Which is the largest continent?",["Asia","Africa","Europe","North America"],0],
+["🌍","Which is the smallest continent?",["Australia","Europe","Antarctica","South America"],0],
+["🌍","Which is the largest ocean?",["Pacific Ocean","Atlantic Ocean","Indian Ocean","Arctic Ocean"],0],
+["🌍","Which ocean lies between Africa and Australia?",["Indian Ocean","Pacific Ocean","Atlantic Ocean","Arctic Ocean"],0],
+["🌍","Which ocean lies between Europe and North America?",["Atlantic Ocean","Indian Ocean","Pacific Ocean","Arctic Ocean"],0],
+["🌍","Which ocean surrounds Antarctica?",["Southern Ocean","Atlantic Ocean","Indian Ocean","Arctic Ocean"],0],
+["🌍","Which continent contains the Sahara Desert?",["Africa","Asia","Australia","South America"],0],
+["🌍","Which continent contains the Amazon Basin?",["South America","Africa","Asia","Europe"],0],
 
-{
-icon:"🌍",
-q:"Paris is the capital of:",
-o:[
-"France",
-"Italy",
-"Spain",
-"Germany"
-],
-a:0
-},
+["🏛️","What is the capital of France?",["Paris","Madrid","Rome","Berlin"],0],
+["🏛️","What is the capital of Germany?",["Berlin","Paris","Vienna","Prague"],0],
+["🏛️","What is the capital of Italy?",["Rome","Milan","Paris","Athens"],0],
+["🏛️","What is the capital of Spain?",["Madrid","Barcelona","Lisbon","Rome"],0],
+["🏛️","What is the capital of Portugal?",["Lisbon","Madrid","Porto","Rome"],0],
+["🏛️","What is the capital of Greece?",["Athens","Rome","Sofia","Istanbul"],0],
+["🏛️","What is the capital of Norway?",["Oslo","Stockholm","Helsinki","Copenhagen"],0],
+["🏛️","What is the capital of Sweden?",["Stockholm","Oslo","Helsinki","Copenhagen"],0],
+["🏛️","What is the capital of Finland?",["Helsinki","Oslo","Stockholm","Reykjavik"],0],
+["🏛️","What is the capital of Denmark?",["Copenhagen","Oslo","Stockholm","Helsinki"],0],
 
-{
-icon:"🌍",
-q:"The Great Wall is located in:",
-o:[
-"China",
-"Japan",
-"India",
-"Thailand"
-],
-a:0
-},
+["🏙️","What is the capital of Japan?",["Tokyo","Kyoto","Osaka","Hiroshima"],0],
+["🏙️","What is the capital of China?",["Beijing","Shanghai","Hong Kong","Guangzhou"],0],
+["🏙️","What is the capital of South Korea?",["Seoul","Busan","Incheon","Daegu"],0],
+["🏙️","What is the capital of Thailand?",["Bangkok","Phuket","Chiang Mai","Pattaya"],0],
+["🏙️","What is the capital of Nepal?",["Kathmandu","Pokhara","Lalitpur","Biratnagar"],0],
+["🏙️","What is the capital of Bhutan?",["Thimphu","Paro","Punakha","Trongsa"],0],
+["🏙️","What is the capital of Bangladesh?",["Dhaka","Chittagong","Sylhet","Rajshahi"],0],
+["🏙️","What is the capital of Pakistan?",["Islamabad","Karachi","Lahore","Peshawar"],0],
+["🏙️","What is the capital of Afghanistan?",["Kabul","Herat","Kandahar","Mazar-i-Sharif"],0],
+["🏙️","What is the capital of Iran?",["Tehran","Isfahan","Shiraz","Tabriz"],0],
 
-{
-icon:"🌍",
-q:"Tokyo is the capital of:",
-o:[
-"China",
-"Japan",
-"South Korea",
-"Vietnam"
-],
-a:1
-},
+["🌎","What is the capital of the United States?",["Washington, D.C.","New York","Los Angeles","Chicago"],0],
+["🌎","What is the capital of Canada?",["Ottawa","Toronto","Vancouver","Montreal"],0],
+["🌎","What is the capital of Mexico?",["Mexico City","Cancun","Monterrey","Guadalajara"],0],
+["🌎","What is the capital of Brazil?",["Brasilia","Rio de Janeiro","São Paulo","Salvador"],0],
+["🌎","What is the capital of Argentina?",["Buenos Aires","Cordoba","Rosario","Mendoza"],0],
+["🌎","What is the capital of Chile?",["Santiago","Valparaiso","Concepcion","Antofagasta"],0],
+["🌎","What is the capital of Peru?",["Lima","Cusco","Arequipa","Trujillo"],0],
+["🌎","What is the capital of Colombia?",["Bogota","Medellin","Cali","Cartagena"],0],
+["🌎","What is the capital of Ecuador?",["Quito","Guayaquil","Cuenca","Loja"],0],
+["🌎","What is the capital of Uruguay?",["Montevideo","Salto","Punta del Este","Paysandu"],0],
 
-{
-icon:"🌍",
-q:"Which country is in South America?",
-o:[
-"Brazil",
-"Egypt",
-"Spain",
-"India"
-],
-a:0
-},
+["🌍","What is the capital of Egypt?",["Cairo","Alexandria","Giza","Luxor"],0],
+["🌍","What is the capital of Kenya?",["Nairobi","Mombasa","Kisumu","Nakuru"],0],
+["🌍","What is the capital of Ethiopia?",["Addis Ababa","Dire Dawa","Gondar","Mekelle"],0],
+["🌍","What is the capital of Nigeria?",["Abuja","Lagos","Kano","Ibadan"],0],
+["🌍","What is the capital of Ghana?",["Accra","Kumasi","Tamale","Tema"],0],
+["🌍","What is the capital of Morocco?",["Rabat","Casablanca","Marrakesh","Fez"],0],
+["🌍","What is the capital of Algeria?",["Algiers","Oran","Constantine","Annaba"],0],
+["🌍","What is the capital of Tunisia?",["Tunis","Sfax","Sousse","Bizerte"],0],
+["🌍","What is the capital of South Africa?",["Pretoria","Cape Town","Durban","Johannesburg"],0],
+["🌍","What is the capital of Tanzania?",["Dodoma","Dar es Salaam","Arusha","Mwanza"],0],
 
-{
-icon:"🌍",
-q:"Canberra is the capital of:",
-o:[
-"Australia",
-"New Zealand",
-"Canada",
-"South Africa"
-],
-a:0
-},
+["🏔️","Which is the world's highest mountain above sea level?",["Mount Everest","K2","Kangchenjunga","Lhotse"],0],
+["🏔️","K2 is located in which mountain range?",["Karakoram","Himalayas","Andes","Alps"],0],
+["🏔️","The Andes are mainly located in which continent?",["South America","North America","Asia","Africa"],0],
+["🏔️","The Alps are mainly located in which continent?",["Europe","Asia","Africa","Australia"],0],
+["🏔️","Mount Fuji is located in:",["Japan","China","South Korea","Nepal"],0],
+["🏔️","The Himalayas are located in:",["Asia","Europe","Africa","South America"],0],
+["🏔️","The Rocky Mountains are mainly in:",["North America","South America","Europe","Asia"],0],
+["🏔️","The Atlas Mountains are in:",["North Africa","South America","East Asia","Australia"],0],
+["🏔️","The Pyrenees lie between France and:",["Spain","Italy","Germany","Portugal"],0],
+["🏔️","The Ural Mountains traditionally divide Europe and:",["Asia","Africa","Australia","North America"],0],
 
-{
-icon:"🌍",
-q:"The pyramids of Giza are in:",
-o:[
-"Egypt",
-"Mexico",
-"Peru",
-"Greece"
-],
-a:0
-},
+["🏜️","The Sahara Desert is located in:",["Africa","Asia","Australia","South America"],0],
+["🏜️","The Gobi Desert is mainly located in:",["Mongolia and China","India and Pakistan","Egypt and Libya","Australia"],0],
+["🏜️","The Atacama Desert is mainly in:",["Chile","Brazil","Argentina","Peru"],0],
+["🏜️","The Arabian Desert is located in:",["Southwest Asia","North America","Europe","South America"],0],
+["🏜️","The Kalahari Desert is in:",["Southern Africa","Central Asia","Australia","South America"],0],
+["🏜️","The Namib Desert is located mainly in:",["Namibia","Egypt","India","Mexico"],0],
+["🏜️","The Great Victoria Desert is in:",["Australia","Africa","Asia","South America"],0],
+["🏜️","The Mojave Desert is in:",["USA","Brazil","Mexico only","Egypt"],0],
+["🏜️","The Sonoran Desert is mainly in Mexico and:",["USA","Canada","Brazil","Argentina"],0],
+["🏜️","The Thar Desert extends into India and:",["Pakistan","Nepal","China","Bangladesh"],0],
 
-{
-icon:"🌍",
-q:"London is the capital of:",
-o:[
-"United Kingdom",
-"France",
-"Ireland",
-"Norway"
-],
-a:0
-},
+["🌊","The Nile River is associated with:",["Africa","Europe","Australia","North America"],0],
+["🌊","The Amazon River is in:",["South America","Africa","Asia","Europe"],0],
+["🌊","The Yangtze River is in:",["China","Japan","India","Russia"],0],
+["🌊","The Mississippi River is in:",["USA","Canada","Brazil","Mexico"],0],
+["🌊","The Danube flows through:",["Europe","Africa","Australia","South America"],0],
+["🌊","The Ganges River is mainly associated with:",["India and Bangladesh","China and Japan","Egypt and Sudan","Brazil and Peru"],0],
+["🌊","The Mekong River flows through several countries in:",["Southeast Asia","Europe","South America","North Africa"],0],
+["🌊","The Volga River is located in:",["Russia","China","India","Germany"],0],
+["🌊","The Rhine is an important river of:",["Europe","Africa","Australia","South America"],0],
+["🌊","The Congo River is located in:",["Africa","Asia","Europe","North America"],0],
 
-{
-icon:"🌍",
-q:"Which country is in North America?",
-o:[
-"Canada",
-"Brazil",
-"India",
-"Egypt"
-],
-a:0
-},
+["🏛️","The Eiffel Tower is in:",["France","Italy","Spain","Germany"],0],
+["🏛️","The Great Wall is in:",["China","Japan","India","Mongolia"],0],
+["🏛️","The Pyramids of Giza are in:",["Egypt","Mexico","Peru","Greece"],0],
+["🏛️","The Colosseum is in:",["Rome","Paris","Athens","Madrid"],0],
+["🏛️","Machu Picchu is in:",["Peru","Chile","Brazil","Mexico"],0],
+["🏛️","Christ the Redeemer is in:",["Brazil","Argentina","Chile","Peru"],0],
+["🏛️","The Statue of Liberty is in:",["USA","Canada","France","UK"],0],
+["🏛️","The Sydney Opera House is in:",["Australia","New Zealand","Canada","UK"],0],
+["🏛️","Petra is located in:",["Jordan","Egypt","Turkey","Lebanon"],0],
+["🏛️","Angkor Wat is in:",["Cambodia","Thailand","Vietnam","Laos"],0],
 
-{
-icon:"🌍",
-q:"Mount Fuji is located in:",
-o:[
-"Japan",
-"China",
-"Nepal",
-"Bhutan"
-],
-a:0
-}
+["📍","Which country is shaped roughly like a boot?",["Italy","Spain","France","Greece"],0],
+["📍","Which country is famous for its long north-south shape on South America's west coast?",["Chile","Brazil","Argentina","Peru"],0],
+["📍","Which country is directly north of the United States?",["Canada","Mexico","Greenland","Cuba"],0],
+["📍","Which country lies east of India across the Bay of Bengal?",["Myanmar","Iran","Afghanistan","Nepal"],0],
+["📍","Which country lies west of India?",["Pakistan","Myanmar","Nepal","Bhutan"],0],
+["📍","Which country is an island nation east of China?",["Japan","India","Mongolia","Nepal"],0],
+["📍","Which country lies between France and Spain?",["None; they share a border","Portugal","Italy","Belgium"],0],
+["📍","Which country occupies most of the Arabian Peninsula?",["Saudi Arabia","Turkey","Iran","Iraq"],0],
+["📍","Which country is located at the southern tip of Africa?",["South Africa","Egypt","Kenya","Morocco"],0],
+["📍","Which country is both in Europe and Asia?",["Turkey","Portugal","Brazil","Egypt"],0]
 
 ];
 
 
 /* =====================================================
-   VARIABLES
+   CONVERT MAP ARRAYS TO OBJECTS
+===================================================== */
+
+function convertMapData(data){
+
+    return data.map(item=>({
+
+        icon:item[0],
+
+        q:item[1],
+
+        o:item[2],
+
+        a:item[3]
+
+    }));
+
+}
+
+const india=
+    convertMapData(indiaQuestions);
+
+const world=
+    convertMapData(worldQuestions);
+
+
+/* =====================================================
+   STATE
 ===================================================== */
 
 let questions=[];
-let index=0;
+
+let current=0;
+
 let score=0;
-let selected=false;
+
+let answered=false;
+
 let wrongQuestions=[];
 
 let mapQuestions=[];
-let mapIndex=0;
+
+let mapCurrent=0;
+
 let mapScore=0;
-let mapSelected=false;
+
+let mapAnswered=false;
 
 let lastQuiz="political";
 
 let soundOn=
-localStorage.getItem("studyHubSound")!=="off";
+    localStorage.getItem("studyHubSound")
+    !=="off";
 
 
 /* =====================================================
@@ -2239,13 +3083,19 @@ function hideAll(){
         "mapQuiz",
         "result",
         "wrongPage",
+        "about",
         "settings"
+
     ].forEach(id=>{
+
         document
         .getElementById(id)
         .classList.add("hidden");
+
     });
+
 }
+
 
 function goHome(){
 
@@ -2256,6 +3106,48 @@ function goHome(){
     .classList.remove("hidden");
 
     beep("click");
+
+}
+
+
+function openMaps(){
+
+    hideAll();
+
+    document
+    .getElementById("maps")
+    .classList.remove("hidden");
+
+    beep("click");
+
+}
+
+
+function openAbout(){
+
+    hideAll();
+
+    document
+    .getElementById("about")
+    .classList.remove("hidden");
+
+    beep("click");
+
+}
+
+
+function openSettings(){
+
+    hideAll();
+
+    document
+    .getElementById("settings")
+    .classList.remove("hidden");
+
+    updateSoundButton();
+
+    beep("click");
+
 }
 
 
@@ -2265,7 +3157,8 @@ function goHome(){
 
 function beep(type="click"){
 
-    if(!soundOn) return;
+    if(!soundOn)
+        return;
 
     try{
 
@@ -2283,35 +3176,47 @@ function beep(type="click"){
             ctx.createGain();
 
         osc.connect(gain);
+
         gain.connect(ctx.destination);
 
+
         if(type==="correct"){
+
             osc.frequency.value=760;
+
         }
         else if(type==="wrong"){
-            osc.frequency.value=230;
+
+            osc.frequency.value=220;
+
         }
         else{
-            osc.frequency.value=450;
+
+            osc.frequency.value=430;
+
         }
 
+
         gain.gain.setValueAtTime(
-            .07,
+            .065,
             ctx.currentTime
         );
 
         gain.gain.exponentialRampToValueAtTime(
             .001,
-            ctx.currentTime+.16
+            ctx.currentTime+.17
         );
+
 
         osc.start();
 
         osc.stop(
-            ctx.currentTime+.16
+            ctx.currentTime+.17
         );
 
-    }catch(e){}
+    }
+    catch(e){}
+
 }
 
 
@@ -2319,16 +3224,19 @@ function beep(type="click"){
    POLITICAL SCIENCE
 ===================================================== */
 
-function startPoliticalScience(){
+function startPolitical(){
 
     lastQuiz="political";
 
     questions=
-        [...politicalScienceQuestions];
+        [...politicalQuestions];
 
-    index=0;
+    current=0;
+
     score=0;
-    selected=false;
+
+    answered=false;
+
     wrongQuestions=[];
 
     hideAll();
@@ -2337,40 +3245,52 @@ function startPoliticalScience(){
     .getElementById("quiz")
     .classList.remove("hidden");
 
-    showQuestion();
+    showPoliticalQuestion();
 
     beep("click");
+
 }
 
-function showQuestion(){
 
-    selected=false;
+function showPoliticalQuestion(){
 
-    const q=questions[index];
+    answered=false;
+
+    const q=
+        questions[current];
+
 
     document
     .getElementById("counter")
     .textContent=
-        `Question ${index+1} / ${questions.length}`;
+        `Question ${current+1} / ${questions.length}`;
+
 
     document
     .getElementById("qNumber")
     .textContent=
-        `QUESTION ${index+1}`;
+        `QUESTION ${current+1}`;
+
 
     document
     .getElementById("question")
-    .textContent=q.q;
+    .textContent=
+        q.q;
+
 
     document
     .getElementById("progressBar")
     .style.width=
-        ((index/questions.length)*100)+"%";
+        ((current/questions.length)*100)+"%";
+
 
     const box=
-        document.getElementById("options");
+        document
+        .getElementById("options");
+
 
     box.innerHTML="";
+
 
     q.o.forEach((text,i)=>{
 
@@ -2383,37 +3303,47 @@ function showQuestion(){
             `${String.fromCharCode(65+i)}. ${text}`;
 
         button.onclick=
-            ()=>selectAnswer(i,button);
+            ()=>answerPolitical(i,button);
 
         box.appendChild(button);
 
     });
 
+
     document
     .getElementById("next")
     .classList.add("hidden");
+
 }
 
-function selectAnswer(choice,button){
 
-    if(selected) return;
+function answerPolitical(choice,button){
 
-    selected=true;
+    if(answered)
+        return;
 
-    const q=questions[index];
+    answered=true;
+
+    const q=
+        questions[current];
+
 
     const buttons=
         document.querySelectorAll(
             "#options .option"
         );
 
+
     buttons.forEach((btn,i)=>{
 
         if(i===q.a){
+
             btn.classList.add("correct");
+
         }
 
     });
+
 
     if(choice===q.a){
 
@@ -2421,118 +3351,80 @@ function selectAnswer(choice,button){
 
         beep("correct");
 
-    }else{
+    }
+    else{
 
         button.classList.add("wrong");
 
         wrongQuestions.push(q);
 
         beep("wrong");
+
     }
+
 
     document
     .getElementById("next")
     .classList.remove("hidden");
+
 }
 
-function nextQuestion(){
 
-    if(!selected) return;
+function nextPolitical(){
 
-    index++;
+    if(!answered)
+        return;
 
-    if(index>=questions.length){
+    current++;
 
-        finishPoliticalScience();
 
-    }else{
+    if(current>=questions.length){
 
-        showQuestion();
+        finishQuiz();
+
+    }
+    else{
+
+        showPoliticalQuestion();
+
     }
 
     beep("click");
+
 }
 
-function finishPoliticalScience(){
 
-    const total=questions.length;
+function finishQuiz(){
 
-    const percentage=
-        Math.round(
-            score/total*100
-        );
+    showResult(
+        score,
+        questions.length
+    );
 
     localStorage.setItem(
         "studyHubWrong",
         JSON.stringify(wrongQuestions)
     );
 
-    hideAll();
-
-    document
-    .getElementById("result")
-    .classList.remove("hidden");
-
-    document
-    .getElementById("finalScore")
-    .textContent=
-        `${score} / ${total}`;
-
-    document
-    .getElementById("correct")
-    .textContent=score;
-
-    document
-    .getElementById("wrong")
-    .textContent=
-        total-score;
-
-    document
-    .getElementById("percent")
-    .textContent=
-        percentage+"%";
-
-    document
-    .getElementById("resultMessage")
-    .textContent=
-        percentage>=90
-        ? "Outstanding performance! 🏆"
-        : percentage>=75
-        ? "Excellent work! 🔥"
-        : percentage>=50
-        ? "Good effort! Keep going! 📚"
-        : "Keep practising! 💪";
-
-    beep("correct");
 }
 
 
 /* =====================================================
-   MAPS
+   MAP QUIZZES
 ===================================================== */
 
-function openMaps(){
-
-    hideAll();
-
-    document
-    .getElementById("maps")
-    .classList.remove("hidden");
-
-    beep("click");
-}
-
-
-function startIndiaMap(){
+function startIndia(){
 
     lastQuiz="india";
 
     mapQuestions=
-        [...indiaQuestions];
+        [...india];
 
-    mapIndex=0;
+    mapCurrent=0;
+
     mapScore=0;
-    mapSelected=false;
+
+    mapAnswered=false;
 
     hideAll();
 
@@ -2543,24 +3435,27 @@ function startIndiaMap(){
     document
     .getElementById("mapTitle")
     .textContent=
-        "India Map Quiz 🇮🇳";
+        "India Geography 🇮🇳";
 
     showMapQuestion();
 
     beep("click");
+
 }
 
 
-function startWorldMap(){
+function startWorld(){
 
     lastQuiz="world";
 
     mapQuestions=
-        [...worldQuestions];
+        [...world];
 
-    mapIndex=0;
+    mapCurrent=0;
+
     mapScore=0;
-    mapSelected=false;
+
+    mapAnswered=false;
 
     hideAll();
 
@@ -2571,43 +3466,54 @@ function startWorldMap(){
     document
     .getElementById("mapTitle")
     .textContent=
-        "World Map Quiz 🌍";
+        "World Geography 🌍";
 
     showMapQuestion();
 
     beep("click");
+
 }
 
 
 function showMapQuestion(){
 
-    mapSelected=false;
+    mapAnswered=false;
 
     const q=
-        mapQuestions[mapIndex];
+        mapQuestions[mapCurrent];
+
 
     document
     .getElementById("mapCounter")
     .textContent=
-        `Question ${mapIndex+1} / ${mapQuestions.length}`;
+        `Question ${mapCurrent+1} / ${mapQuestions.length}`;
+
 
     document
     .getElementById("mapProgress")
     .style.width=
-        ((mapIndex/mapQuestions.length)*100)+"%";
+        ((mapCurrent/mapQuestions.length)*100)+"%";
+
 
     document
     .getElementById("mapVisual")
-    .textContent=q.icon;
+    .textContent=
+        q.icon;
+
 
     document
     .getElementById("mapQuestion")
-    .textContent=q.q;
+    .textContent=
+        q.q;
+
 
     const box=
-        document.getElementById("mapOptions");
+        document
+        .getElementById("mapOptions");
+
 
     box.innerHTML="";
+
 
     q.o.forEach((text,i)=>{
 
@@ -2620,39 +3526,47 @@ function showMapQuestion(){
             `${String.fromCharCode(65+i)}. ${text}`;
 
         button.onclick=
-            ()=>selectMapAnswer(i,button);
+            ()=>answerMap(i,button);
 
         box.appendChild(button);
 
     });
 
+
     document
     .getElementById("mapNext")
     .classList.add("hidden");
+
 }
 
 
-function selectMapAnswer(choice,button){
+function answerMap(choice,button){
 
-    if(mapSelected) return;
+    if(mapAnswered)
+        return;
 
-    mapSelected=true;
+    mapAnswered=true;
 
     const q=
-        mapQuestions[mapIndex];
+        mapQuestions[mapCurrent];
+
 
     const buttons=
         document.querySelectorAll(
             "#mapOptions .option"
         );
 
+
     buttons.forEach((btn,i)=>{
 
         if(i===q.a){
+
             btn.classList.add("correct");
+
         }
 
     });
+
 
     if(choice===q.a){
 
@@ -2660,101 +3574,163 @@ function selectMapAnswer(choice,button){
 
         beep("correct");
 
-    }else{
+    }
+    else{
 
         button.classList.add("wrong");
 
         beep("wrong");
+
     }
+
 
     document
     .getElementById("mapNext")
     .classList.remove("hidden");
+
 }
 
 
-function nextMapQuestion(){
+function nextMap(){
 
-    if(!mapSelected) return;
+    if(!mapAnswered)
+        return;
 
-    mapIndex++;
+    mapCurrent++;
 
-    if(mapIndex>=mapQuestions.length){
 
-        finishMapQuiz();
+    if(mapCurrent>=mapQuestions.length){
 
-    }else{
+        finishMap();
+
+    }
+    else{
 
         showMapQuestion();
+
     }
 
     beep("click");
+
 }
 
 
-function finishMapQuiz(){
+function finishMap(){
 
-    const total=
-        mapQuestions.length;
+    showResult(
+        mapScore,
+        mapQuestions.length
+    );
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+function showResult(points,total){
 
     const percentage=
         Math.round(
-            mapScore/total*100
+            points/total*100
         );
 
+
     hideAll();
+
 
     document
     .getElementById("result")
     .classList.remove("hidden");
 
+
     document
     .getElementById("finalScore")
     .textContent=
-        `${mapScore} / ${total}`;
+        `${points} / ${total}`;
+
 
     document
     .getElementById("correct")
-    .textContent=mapScore;
+    .textContent=
+        points;
+
 
     document
     .getElementById("wrong")
     .textContent=
-        total-mapScore;
+        total-points;
+
 
     document
     .getElementById("percent")
     .textContent=
         percentage+"%";
 
+
+    let message;
+
+
+    if(percentage>=90){
+
+        message=
+            "Outstanding performance! 🏆🔥";
+
+    }
+    else if(percentage>=75){
+
+        message=
+            "Excellent work! Keep going! 🚀";
+
+    }
+    else if(percentage>=50){
+
+        message=
+            "Good effort! Keep practising! 📚";
+
+    }
+    else{
+
+        message=
+            "Keep learning and try again! 💪";
+
+    }
+
+
     document
     .getElementById("resultMessage")
     .textContent=
-        percentage>=90
-        ? "Amazing Geography knowledge! 🌍🏆"
-        : percentage>=70
-        ? "Great work! 🗺️🔥"
-        : "Keep exploring and practising! 📚";
+        message;
+
 
     beep("correct");
+
 }
 
 
 /* =====================================================
-   RETRY LAST QUIZ
+   RETRY
 ===================================================== */
 
-function retryLastQuiz(){
+function retryLast(){
 
     if(lastQuiz==="political"){
-        startPoliticalScience();
+
+        startPolitical();
+
     }
     else if(lastQuiz==="india"){
-        startIndiaMap();
+
+        startIndia();
+
     }
     else if(lastQuiz==="world"){
-        startWorldMap();
+
+        startWorld();
+
     }
+
 }
 
 
@@ -2770,10 +3746,14 @@ function showWrong(){
     .getElementById("wrongPage")
     .classList.remove("hidden");
 
+
     const list=
-        document.getElementById("wrongList");
+        document
+        .getElementById("wrongList");
+
 
     list.innerHTML="";
+
 
     const saved=
         JSON.parse(
@@ -2782,50 +3762,73 @@ function showWrong(){
             ) || "[]"
         );
 
+
     if(saved.length===0){
 
         list.innerHTML=`
-            <div class="questionCard">
-                <h3>No wrong questions 🎉</h3>
 
-                <p style="
-                    color:#7e8b9d;
-                    margin-top:8px;
-                    font-size:13px;
-                    line-height:1.5;
-                ">
-                    Complete a Political Science
-                    test and your mistakes will
-                    appear here.
-                </p>
-            </div>
+        <div class="questionCard">
+
+            <h3>
+                No wrong questions 🎉
+            </h3>
+
+            <p style="
+                color:#7e8b9d;
+                margin-top:8px;
+                font-size:13px;
+                line-height:1.6;
+            ">
+
+                Complete a Political Science
+                test and your mistakes will
+                appear here.
+
+            </p>
+
+        </div>
+
         `;
 
         return;
+
     }
+
 
     saved.forEach((q,i)=>{
 
         const item=
             document.createElement("div");
 
-        item.className="wrongItem";
+        item.className=
+            "wrongItem";
+
 
         item.innerHTML=`
+
             <div class="wrongQuestion">
+
                 ${i+1}. ${q.q}
+
             </div>
 
             <div class="correctAnswer">
+
                 Correct Answer:
                 ${q.o[q.a]}
+
             </div>
+
         `;
 
+
         list.appendChild(item);
+
     });
 
+
     beep("click");
+
 }
 
 
@@ -2833,34 +3836,28 @@ function showWrong(){
    SETTINGS
 ===================================================== */
 
-function openSettings(){
-
-    hideAll();
-
-    document
-    .getElementById("settings")
-    .classList.remove("hidden");
-
-    updateSoundButton();
-
-    beep("click");
-}
-
-
 function toggleSound(){
 
     soundOn=!soundOn;
 
+
     localStorage.setItem(
         "studyHubSound",
-        soundOn ? "on" : "off"
+        soundOn
+        ? "on"
+        : "off"
     );
+
 
     updateSoundButton();
 
+
     if(soundOn){
+
         beep("click");
+
     }
+
 }
 
 
@@ -2872,29 +3869,40 @@ function updateSoundButton(){
         soundOn
         ? "🔊 ON"
         : "🔇 OFF";
+
 }
 
 
 /* =====================================================
-   WELCOME SCREEN TIMING
+   WELCOME → APP
 ===================================================== */
 
 setTimeout(()=>{
 
     const screen=
-        document.getElementById(
+        document
+        .getElementById(
             "welcomeScreen"
         );
 
+
     screen.style.opacity="0";
+
 
     setTimeout(()=>{
 
         screen.style.display="none";
 
-    },800);
+    },900);
 
-},3600);
+},3800);
+
+
+/* =====================================================
+   INITIAL STATE
+===================================================== */
+
+updateSoundButton();
 
 </script>
 
