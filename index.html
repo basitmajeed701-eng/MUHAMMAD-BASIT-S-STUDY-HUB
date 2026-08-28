@@ -492,4 +492,1076 @@
     </script>
 
 </body>
-</html>
+</html><!-- =========================================
+     POLITICAL SCIENCE QUIZ SYSTEM
+========================================= -->
+
+<section id="political-quiz" class="quiz-section">
+
+    <div class="section-container">
+
+        <div class="section-label">
+            04 — POLITICAL SCIENCE
+        </div>
+
+        <h2>POLITICAL SCIENCE QUIZ</h2>
+
+        <p class="about-text">
+            Test your knowledge of Political Theory,
+            Indian Constitution, Fundamental Rights,
+            Parliament, Judiciary, Democracy and more.
+        </p>
+
+        <div class="quiz-box">
+
+            <div class="quiz-top">
+                <span id="question-number">Question 1</span>
+                <span id="score">Score: 0</span>
+            </div>
+
+            <div class="progress">
+                <div id="progress-bar"></div>
+            </div>
+
+            <h3 id="question">
+                Loading question...
+            </h3>
+
+            <div id="options"></div>
+
+            <button id="next-btn" onclick="nextQuestion()">
+                NEXT QUESTION →
+            </button>
+
+            <div id="result" class="result"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* =========================================
+   POLITICAL SCIENCE QUIZ DESIGN
+========================================= */
+
+.quiz-section {
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.04),
+            transparent 55%
+        );
+}
+
+.quiz-box {
+    margin-top: 50px;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 35px;
+
+    background: rgba(255,255,255,0.035);
+
+    border: 1px solid #292929;
+
+    box-shadow:
+        0 20px 80px rgba(0,0,0,0.4);
+
+    backdrop-filter: blur(10px);
+}
+
+.quiz-top {
+    display: flex;
+    justify-content: space-between;
+    color: #888;
+
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+}
+
+.progress {
+    width: 100%;
+    height: 4px;
+    background: #202020;
+    margin-bottom: 35px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: white;
+    transition: width 0.4s ease;
+}
+
+#question {
+    font-size: 27px;
+    line-height: 1.4;
+    margin-bottom: 30px;
+}
+
+.option {
+    width: 100%;
+
+    padding: 17px 20px;
+
+    margin: 12px 0;
+
+    text-align: left;
+
+    background: #101010;
+
+    color: white;
+
+    border: 1px solid #292929;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border 0.2s ease;
+}
+
+.option:hover {
+    transform: translateX(5px);
+    border-color: #777;
+    background: #181818;
+}
+
+.option.correct {
+    border-color: #777;
+    background: #252525;
+}
+
+.option.wrong {
+    border-color: #555;
+    background: #151515;
+    opacity: 0.65;
+}
+
+.option.disabled {
+    pointer-events: none;
+}
+
+#next-btn {
+    margin-top: 25px;
+
+    padding: 14px 28px;
+
+    background: white;
+    color: black;
+
+    border: none;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#next-btn:hover {
+    transform: translateY(-3px);
+    background: #ddd;
+}
+
+.result {
+    text-align: center;
+
+    margin-top: 30px;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+}
+
+.quiz-complete {
+    text-align: center;
+}
+
+.quiz-complete h3 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.restart-btn {
+    margin-top: 25px;
+
+    padding: 14px 30px;
+
+    background: white;
+    color: black;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+
+    .quiz-box {
+        padding: 22px;
+    }
+
+    #question {
+        font-size: 21px;
+    }
+
+    .option {
+        font-size: 14px;
+    }
+
+}
+
+</style>
+
+
+<script>
+
+/* =========================================
+   POLITICAL SCIENCE QUESTION BANK
+========================================= */
+
+const politicalQuestions = [
+
+    {
+        question: "What is the supreme law of India?",
+        options: [
+            "Parliament",
+            "The Constitution",
+            "The Supreme Court",
+            "The President"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "When did the Constitution of India come into force?",
+        options: [
+            "15 August 1947",
+            "26 November 1949",
+            "26 January 1950",
+            "2 October 1950"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Who is known as the chief architect of the Indian Constitution?",
+        options: [
+            "Jawaharlal Nehru",
+            "Dr. B. R. Ambedkar",
+            "Mahatma Gandhi",
+            "Sardar Patel"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which part of the Constitution contains Fundamental Rights?",
+        options: [
+            "Part I",
+            "Part II",
+            "Part III",
+            "Part IV"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Article 14 deals with:",
+        options: [
+            "Freedom of religion",
+            "Equality before law",
+            "Right to education",
+            "Cultural rights"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Article 15 prohibits discrimination on certain grounds. Which is NOT one of them?",
+        options: [
+            "Religion",
+            "Race",
+            "Caste",
+            "Political party"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Which Article abolishes untouchability?",
+        options: [
+            "Article 14",
+            "Article 15",
+            "Article 17",
+            "Article 19"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Article 18 deals with:",
+        options: [
+            "Abolition of titles",
+            "Freedom of speech",
+            "Right to life",
+            "Right to education"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which Article guarantees freedom of speech and expression?",
+        options: [
+            "Article 19",
+            "Article 21",
+            "Article 25",
+            "Article 32"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Article 21 protects:",
+        options: [
+            "Right to property",
+            "Life and personal liberty",
+            "Right to vote",
+            "Freedom of religion"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which Article is associated with the Right to Constitutional Remedies?",
+        options: [
+            "Article 21",
+            "Article 25",
+            "Article 32",
+            "Article 44"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Who called Article 32 the 'heart and soul' of the Constitution?",
+        options: [
+            "Dr. B. R. Ambedkar",
+            "Jawaharlal Nehru",
+            "Rajendra Prasad",
+            "Sardar Patel"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Fundamental Duties are included in which part of the Constitution?",
+        options: [
+            "Part III",
+            "Part IVA",
+            "Part V",
+            "Part VI"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Directive Principles of State Policy are contained in:",
+        options: [
+            "Part II",
+            "Part III",
+            "Part IV",
+            "Part V"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "India is described in the Constitution as a:",
+        options: [
+            "Monarchy",
+            "Sovereign Socialist Secular Democratic Republic",
+            "Military state",
+            "Confederation"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "The Preamble begins with which words?",
+        options: [
+            "We, the Parliament",
+            "We, the People of India",
+            "We, the Government",
+            "We, the States"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which institution is the final interpreter of the Constitution?",
+        options: [
+            "Parliament",
+            "President",
+            "Supreme Court",
+            "Election Commission"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "India has which type of government system?",
+        options: [
+            "Presidential",
+            "Parliamentary",
+            "Absolute monarchy",
+            "Military"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Who is the constitutional head of the Union of India?",
+        options: [
+            "Prime Minister",
+            "President",
+            "Chief Justice",
+            "Speaker"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Who is the real executive at the Union level?",
+        options: [
+            "President",
+            "Prime Minister and Council of Ministers",
+            "Chief Justice",
+            "Speaker"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "The Parliament of India consists of:",
+        options: [
+            "Lok Sabha only",
+            "Rajya Sabha only",
+            "President and two Houses",
+            "Supreme Court and Lok Sabha"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Which is the lower House of Parliament?",
+        options: [
+            "Rajya Sabha",
+            "Lok Sabha",
+            "Vidhan Sabha",
+            "Legislative Council"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which is the upper House of Parliament?",
+        options: [
+            "Lok Sabha",
+            "Rajya Sabha",
+            "Vidhan Sabha",
+            "Gram Sabha"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "The Rajya Sabha is a:",
+        options: [
+            "Temporary House",
+            "Permanent House",
+            "Judicial body",
+            "Local body"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Who presides over the Lok Sabha?",
+        options: [
+            "President",
+            "Prime Minister",
+            "Speaker",
+            "Vice-President"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Who is the ex-officio Chairman of the Rajya Sabha?",
+        options: [
+            "President",
+            "Vice-President",
+            "Prime Minister",
+            "Speaker"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which body conducts elections in India?",
+        options: [
+            "Supreme Court",
+            "Election Commission of India",
+            "Parliament",
+            "Union Public Service Commission"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is universal adult franchise?",
+        options: [
+            "Voting only for educated people",
+            "Voting only for government employees",
+            "Voting rights for eligible adult citizens",
+            "Voting only for property owners"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Democracy literally means:",
+        options: [
+            "Rule by one",
+            "Rule by the people",
+            "Rule by the army",
+            "Rule by judges"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which is an essential feature of democracy?",
+        options: [
+            "Free and fair elections",
+            "One-party rule without elections",
+            "Military control",
+            "No opposition"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What does secularism broadly mean in the Indian constitutional context?",
+        options: [
+            "Rule by one religion",
+            "State neutrality/equal respect toward religions",
+            "Ban on all religions",
+            "Religious government"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is federalism?",
+        options: [
+            "Division of powers between levels of government",
+            "Rule by judges",
+            "Rule by one person",
+            "A system without states"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "India has:",
+        options: [
+            "Only a central government",
+            "Union and State governments",
+            "Only local governments",
+            "No state governments"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is political equality?",
+        options: [
+            "Everyone has exactly the same income",
+            "Equal political rights and participation",
+            "Everyone has the same occupation",
+            "Everyone has the same beliefs"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is liberty?",
+        options: [
+            "Freedom within a lawful framework",
+            "Freedom to break every law",
+            "Power of one person",
+            "Absence of society"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is equality?",
+        options: [
+            "Identical results in every situation",
+            "Equal status and opportunities",
+            "Rule by majority only",
+            "No individual freedom"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is justice?",
+        options: [
+            "Fairness and giving people their due",
+            "Only punishment",
+            "Political competition",
+            "Military authority"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is a Constitution?",
+        options: [
+            "A political party document",
+            "A set of fundamental rules and principles of government",
+            "A newspaper",
+            "An election poster"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Why are Fundamental Rights important?",
+        options: [
+            "They protect basic freedoms and individual rights",
+            "They remove elections",
+            "They abolish Parliament",
+            "They create political parties"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which body can exercise judicial review?",
+        options: [
+            "Courts",
+            "Political parties",
+            "Election candidates",
+            "Media houses"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is judicial independence?",
+        options: [
+            "Courts functioning independently from improper political influence",
+            "Courts making election campaigns",
+            "Judges becoming politicians",
+            "Parliament controlling every judgment"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is the rule of law?",
+        options: [
+            "Law applies according to personal status",
+            "Everyone is subject to the law",
+            "Only politicians follow law",
+            "Judges are above law"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is citizenship?",
+        options: [
+            "Membership of a political community",
+            "Membership of a sports club",
+            "Employment in government",
+            "Ownership of land"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is public opinion?",
+        options: [
+            "The views held by sections of the public on public issues",
+            "Only government decisions",
+            "Only court judgments",
+            "Only newspaper headlines"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is political participation?",
+        options: [
+            "Taking part in political processes",
+            "Avoiding all public issues",
+            "Only watching television",
+            "Only studying history"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is an opposition party?",
+        options: [
+            "A party that challenges and scrutinizes the government",
+            "A court",
+            "A government department",
+            "An election commission"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is a coalition government?",
+        options: [
+            "Government formed by multiple parties working together",
+            "Government run by judges",
+            "Government without elections",
+            "Government run by one official"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is political representation?",
+        options: [
+            "Citizens having representatives who act on their behalf",
+            "Rule without elections",
+            "Judicial punishment",
+            "Military administration"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is the main purpose of elections in a democracy?",
+        options: [
+            "To choose representatives",
+            "To appoint judges",
+            "To write court judgments",
+            "To abolish political parties"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is a political party?",
+        options: [
+            "An organized group seeking political power through constitutional means",
+            "A court",
+            "A government office",
+            "A private school"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is constitutionalism?",
+        options: [
+            "Government limited by constitutional rules",
+            "Unlimited government power",
+            "Military rule",
+            "Rule without laws"
+        ],
+        answer: 0
+    }
+
+];
+
+
+/* =========================================
+   QUIZ VARIABLES
+========================================= */
+
+let currentQuestion = 0;
+let totalScore = 0;
+let answered = false;
+
+
+/* =========================================
+   START QUIZ
+========================================= */
+
+function loadQuestion() {
+
+    answered = false;
+
+    const questionData =
+        politicalQuestions[currentQuestion];
+
+    document.getElementById("question-number")
+        .innerText =
+        "Question " +
+        (currentQuestion + 1) +
+        " / " +
+        politicalQuestions.length;
+
+    document.getElementById("score")
+        .innerText =
+        "Score: " + totalScore;
+
+    document.getElementById("question")
+        .innerText =
+        questionData.question;
+
+    const optionsBox =
+        document.getElementById("options");
+
+    optionsBox.innerHTML = "";
+
+    questionData.options.forEach(
+        (option, index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className = "option";
+
+            button.innerText =
+                String.fromCharCode(65 + index)
+                + ". "
+                + option;
+
+            button.onclick =
+                () => selectAnswer(index, button);
+
+            optionsBox.appendChild(button);
+        }
+    );
+
+    const progress =
+        ((currentQuestion) /
+        politicalQuestions.length) * 100;
+
+    document.getElementById("progress-bar")
+        .style.width = progress + "%";
+
+    document.getElementById("next-btn")
+        .style.display = "none";
+
+    document.getElementById("result")
+        .innerHTML = "";
+}
+
+
+/* =========================================
+   CHECK ANSWER
+========================================= */
+
+function selectAnswer(
+    selectedIndex,
+    selectedButton
+) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const correctIndex =
+        politicalQuestions[currentQuestion]
+            .answer;
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+    allOptions.forEach(
+        (button, index) => {
+
+            button.classList.add("disabled");
+
+            if (index === correctIndex) {
+                button.classList.add("correct");
+            }
+
+        }
+    );
+
+    if (selectedIndex === correctIndex) {
+
+        totalScore++;
+
+        selectedButton.classList.add("correct");
+
+        document.getElementById("result")
+            .innerText =
+            "✓ Correct Answer";
+
+    } else {
+
+        selectedButton.classList.add("wrong");
+
+        document.getElementById("result")
+            .innerText =
+            "✗ Incorrect Answer";
+    }
+
+    document.getElementById("score")
+        .innerText =
+        "Score: " + totalScore;
+
+    document.getElementById("next-btn")
+        .style.display = "inline-block";
+}
+
+
+/* =========================================
+   NEXT QUESTION
+========================================= */
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+    if (
+        currentQuestion >=
+        politicalQuestions.length
+    ) {
+
+        showFinalResult();
+
+        return;
+    }
+
+    loadQuestion();
+}
+
+
+/* =========================================
+   FINAL RESULT
+========================================= */
+
+function showFinalResult() {
+
+    const percentage =
+        Math.round(
+            (totalScore /
+            politicalQuestions.length) * 100
+        );
+
+    document.querySelector(".quiz-box")
+        .innerHTML = `
+
+        <div class="quiz-complete">
+
+            <div class="section-label">
+                QUIZ COMPLETED
+            </div>
+
+            <h3>
+                ${totalScore}
+                /
+                ${politicalQuestions.length}
+            </h3>
+
+            <p>
+                Your Score:
+                <strong>${percentage}%</strong>
+            </p>
+
+            <p style="color:#888; margin-top:15px;">
+                Keep learning Political Science
+                and improve your score.
+            </p>
+
+            <button
+                class="restart-btn"
+                onclick="restartQuiz()">
+                PLAY AGAIN
+            </button>
+
+        </div>
+
+    `;
+}
+
+
+/* =========================================
+   RESTART
+========================================= */
+
+function restartQuiz() {
+
+    currentQuestion = 0;
+
+    totalScore = 0;
+
+    answered = false;
+
+    document.querySelector(".quiz-box")
+        .innerHTML = `
+
+        <div class="quiz-top">
+            <span id="question-number">
+                Question 1
+            </span>
+
+            <span id="score">
+                Score: 0
+            </span>
+        </div>
+
+        <div class="progress">
+            <div id="progress-bar"></div>
+        </div>
+
+        <h3 id="question">
+            Loading question...
+        </h3>
+
+        <div id="options"></div>
+
+        <button
+            id="next-btn"
+            onclick="nextQuestion()">
+            NEXT QUESTION →
+        </button>
+
+        <div id="result"
+             class="result">
+        </div>
+    `;
+
+    loadQuestion();
+}
+
+
+/* =========================================
+   INITIALIZE
+========================================= */
+
+loadQuestion();
+
+</script>
