@@ -2023,4 +2023,814 @@ reportStyle.innerHTML = `
 
 document.head.appendChild(reportStyle);
 
+</script> <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Study Hub - Class 11 Quiz</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 750px;
+    background: rgba(255,255,255,0.10);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.progress {
+    text-align: center;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.question {
+    font-size: 21px;
+    font-weight: bold;
+    margin: 25px 0;
+    line-height: 1.5;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 12px;
+    background: white;
+    color: #222;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.option:hover {
+    background: #e8e8e8;
+}
+
+.option.selected {
+    background: #90caf9;
+}
+
+button {
+    padding: 13px 25px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+#nextBtn {
+    width: 100%;
+    background: #00c853;
+    color: white;
+}
+
+#nextBtn:hover {
+    background: #00a844;
+}
+
+.hidden {
+    display: none;
+}
+
+.result {
+    text-align: center;
+    padding: 20px;
+}
+
+.score {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.capable {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 25px 0;
+}
+
+.loading {
+    text-align: center;
+    font-size: 22px;
+    margin-top: 25px;
+}
+
+.final-message {
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- QUIZ SCREEN -->
+
+    <div id="quizScreen">
+
+        <h1 id="quizTitle">Study Hub Quiz</h1>
+
+        <div class="progress" id="progress"></div>
+
+        <div class="question" id="question"></div>
+
+        <div id="options"></div>
+
+        <button id="nextBtn">
+            Next Question
+        </button>
+
+    </div>
+
+
+    <!-- RESULT SCREEN -->
+
+    <div id="resultScreen" class="hidden">
+
+        <div class="result">
+
+            <h1 id="resultTitle">
+                Quiz Completed!
+            </h1>
+
+            <div class="score" id="scoreText"></div>
+
+            <div class="capable" id="capableMessage"></div>
+
+            <div class="loading" id="loadingMessage">
+                Preparing your next test...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FINAL SCREEN -->
+
+    <div id="finalScreen" class="hidden">
+
+        <div class="final-message">
+
+            <h1>
+                🎉 Sociology Test Completed!
+            </h1>
+
+            <div class="score" id="finalScore"></div>
+
+            <p id="finalMessage" style="font-size:20px;"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   FIRST 51 QUESTIONS
+========================================================= */
+
+const firstQuiz = [
+
+["What is the study of society called?",
+["Sociology","Biology","Physics","Geography"],0],
+
+["Who is known as the father of Sociology?",
+["Karl Marx","Auguste Comte","Max Weber","Emile Durkheim"],1],
+
+["Which subject studies living organisms?",
+["Physics","Biology","History","Sociology"],1],
+
+["Which is a social institution?",
+["Family","Rock","River","Mountain"],0],
+
+["Which is an example of a social group?",
+["Family","Stone","Cloud","Tree"],0],
+
+["What is culture?",
+["Way of life of a society","Only food","Only clothes","Only language"],0],
+
+["What is a norm?",
+["A social rule","A building","A machine","A disease"],0],
+
+["What is a value?",
+["A socially accepted principle","A road","A vehicle","A tool"],0],
+
+["What is socialization?",
+["Learning social norms and values","Learning mathematics only","Sleeping","Travelling"],0],
+
+["Which is a primary agency of socialization?",
+["Family","Market","Factory","Bank"],0],
+
+["What is society?",
+["A network of social relationships","A single person","A building","A machine"],0],
+
+["What is status?",
+["A social position","A law","A road","A book"],0],
+
+["What is role?",
+["Expected behaviour attached to a status","A building","A place","A vehicle"],0],
+
+["What is social control?",
+["Ways society regulates behaviour","Economic growth","Weather change","Population growth"],0],
+
+["Which is formal social control?",
+["Law","Custom","Tradition","Moral belief"],0],
+
+["Which is informal social control?",
+["Custom","Court","Police","Law"],0],
+
+["What is social stratification?",
+["Division of society into layers","Population growth","Migration","Education"],0],
+
+["Which is an example of achieved status?",
+["Teacher","Age","Sex","Family background"],0],
+
+["Which is an example of ascribed status?",
+["Age","Profession","Education","Occupation"],0],
+
+["What is social change?",
+["Change in social structure and relationships","Change in weather","Change in seasons","Change in temperature"],0],
+
+["What is a community?",
+["People living in a common area with social ties","A single person","A company","A machine"],0],
+
+["What is an institution?",
+["Established pattern of social behaviour","A random event","A building only","A vehicle"],0],
+
+["Which institution is related to education?",
+["School","Hospital","Market","Police station"],0],
+
+["Which institution is primarily related to family life?",
+["Family","Factory","Bank","Office"],0],
+
+["What is education?",
+["A process of learning","A type of transport","A disease","A sport"],0],
+
+["What is population?",
+["Total number of people in an area","Only children","Only workers","Only students"],0],
+
+["What is migration?",
+["Movement of people from one place to another","Birth of a child","Growth of plants","Change in weather"],0],
+
+["What is urbanization?",
+["Growth of towns and cities","Growth of forests","Decrease in population","Agricultural production"],0],
+
+["What is rural society?",
+["Society mainly associated with villages","Society of factories only","Society of cities only","Online society"],0],
+
+["What is social interaction?",
+["Process through which people influence one another","Sleeping","Eating","Walking"],0],
+
+["What is cooperation?",
+["Working together","Fighting","Avoiding people","Competition only"],0],
+
+["What is competition?",
+["Struggle for limited resources or goals","Working together","Sleeping","Migration"],0],
+
+["What is conflict?",
+["Opposition between individuals or groups","Agreement","Cooperation","Friendship"],0],
+
+["What is accommodation?",
+["Adjustment between conflicting groups","Complete conflict","Migration","Population growth"],0],
+
+["What is assimilation?",
+["Process in which groups become culturally similar","Economic growth","Political election","Migration only"],0],
+
+["What is diversity?",
+["Presence of differences among people","Complete similarity","Population decrease","One culture only"],0],
+
+["What is unity?",
+["State of being joined together","Conflict","Division","Migration"],0],
+
+["What is social mobility?",
+["Movement from one social position to another","Physical exercise","Migration only","Population growth"],0],
+
+["What is a caste system?",
+["A system of social stratification based largely on birth","A political party","A school system","A transport system"],0],
+
+["What is a class system?",
+["A system of stratification based largely on economic and social factors","A family tree","A school subject","A religious ceremony"],0],
+
+["What is research?",
+["Systematic investigation of a subject","Guessing","Sleeping","Memorizing only"],0],
+
+["What is data?",
+["Information collected for research","Opinion only","A building","A vehicle"],0],
+
+["What is an interview?",
+["A method of collecting information by asking questions","A type of sport","A law","A social class"],0],
+
+["What is observation?",
+["Careful study of behaviour or events","Guessing","Reading fiction","Sleeping"],0],
+
+["What is a questionnaire?",
+["A set of questions used to collect information","A textbook","A law","A newspaper"],0],
+
+["What is objectivity?",
+["Being free from personal bias","Having personal prejudice","Guessing","Emotional thinking"],0],
+
+["What is subjectivity?",
+["Influence of personal feelings or viewpoints","Complete neutrality","Scientific measurement only","Population growth"],0],
+
+["What is a hypothesis?",
+["A tentative explanation or assumption","A final law","A building","A social group"],0],
+
+["What is a survey?",
+["A systematic method of collecting information from people","A court case","A festival","A sport"],0],
+
+["What is social science?",
+["Study of human society and social relationships","Study of planets only","Study of chemicals only","Study of machines only"],0]
+
+];
+
+
+/* =========================================================
+   CLASS 11 SOCIOLOGY — 51 QUESTIONS
+========================================================= */
+
+const sociologyQuiz = [
+
+["Who is known as the father of Sociology?",
+["Auguste Comte","Karl Marx","Max Weber","Talcott Parsons"],0],
+
+["The term Sociology was coined by:",
+["Auguste Comte","Emile Durkheim","Karl Marx","Herbert Spencer"],0],
+
+["Sociology is the systematic study of:",
+["Society","Plants","Stars","Machines"],0],
+
+["Which of the following is a social institution?",
+["Family","Mountain","River","Cloud"],0],
+
+["Which is a primary group?",
+["Family","Political party","Corporation","Nation"],0],
+
+["Which is a secondary group?",
+["Family","Close friends","Political party","Play group"],2],
+
+["Socialization means:",
+["Learning norms and values of society","Learning only mathematics","Migration","Economic production"],0],
+
+["The first and most important agency of socialization is:",
+["Family","Mass media","Market","Factory"],0],
+
+["Which is an example of informal social control?",
+["Customs","Law","Police","Court"],0],
+
+["Which is an example of formal social control?",
+["Law","Custom","Tradition","Folkways"],0],
+
+["A status refers to:",
+["A social position","A social problem","A social rule","A social conflict"],0],
+
+["Role refers to:",
+["Expected behaviour associated with a status","Economic position","Family size","Population"],0],
+
+["An ascribed status is generally:",
+["Given by birth or involuntarily acquired","Always earned through education","Always economic","Always political"],0],
+
+["An achieved status is generally:",
+["Acquired through effort or choice","Given only by birth","Inherited automatically","Based only on age"],0],
+
+["Social stratification means:",
+["Structured inequality between social groups","Social interaction","Socialization","Migration"],0],
+
+["Caste is mainly associated with:",
+["Birth-based social stratification","Complete equality","Economic planning","Urbanization"],0],
+
+["Class position is generally associated with:",
+["Economic and social factors","Birth only","Age only","Language only"],0],
+
+["Social mobility means:",
+["Movement between social positions","Movement between countries only","Population growth","Socialization"],0],
+
+["Horizontal mobility means:",
+["Movement without major change in social rank","Movement to a higher class","Movement to a lower class","No movement"],0],
+
+["Vertical mobility involves:",
+["Change in social rank","No change in status","Only geographical movement","Only migration"],0],
+
+["Culture includes:",
+["Values, beliefs, norms and practices","Only food","Only clothing","Only language"],0],
+
+["Material culture includes:",
+["Physical objects created and used by people","Beliefs only","Values only","Norms only"],0],
+
+["Non-material culture includes:",
+["Values and beliefs","Buildings only","Machines only","Clothes only"],0],
+
+["Norms are:",
+["Socially accepted rules of behaviour","Economic resources","Buildings","Political parties"],0],
+
+["Values are:",
+["Shared ideas about what is desirable or important","Only laws","Only customs","Only occupations"],0],
+
+["Social change refers to:",
+["Changes in social relationships and institutions","Change in weather","Change in seasons","Change in temperature"],0],
+
+["Urbanization means:",
+["Growth and expansion of urban areas","Decline of cities","Growth of villages only","Decrease in population"],0],
+
+["Industrialization refers to:",
+["Growth of industry and machine-based production","Growth of agriculture only","Migration only","Family growth"],0],
+
+["Modernization generally involves:",
+["Transformation toward modern social, economic and institutional patterns","Return to old customs only","Population decrease","Decline of education"],0],
+
+["What is social interaction?",
+["Process through which people influence one another","Individual isolation","Population growth","Economic production"],0],
+
+["Cooperation means:",
+["Working together toward a common goal","Opposing each other","Avoiding society","Competition only"],0],
+
+["Competition means:",
+["Struggle between individuals or groups for goals or resources","Complete cooperation","Socialization","Assimilation"],0],
+
+["Conflict refers to:",
+["Opposition between individuals or groups","Agreement","Cooperation","Socialization"],0],
+
+["Assimilation means:",
+["Process through which groups become culturally similar","Conflict between groups","Social mobility","Urbanization"],0],
+
+["What is social control?",
+["Mechanisms used to regulate behaviour","Population growth","Migration","Economic production"],0],
+
+["Which thinker wrote about social facts?",
+["Emile Durkheim","Karl Marx","Auguste Comte","Max Weber"],0],
+
+["Karl Marx is strongly associated with the concept of:",
+["Class conflict","Social facts","Verstehen","Organic solidarity"],0],
+
+["Max Weber emphasized the importance of:",
+["Meaning and social action","Biological evolution only","Class struggle only","Population growth"],0],
+
+["Verstehen means:",
+["Understanding social action from the actor's point of view","Measuring population","Economic production","Social conflict"],0],
+
+["Social action is associated particularly with:",
+["Max Weber","Karl Marx","Durkheim","Comte"],0],
+
+["What is research?",
+["Systematic investigation to discover knowledge","Guessing","Memorizing only","Opinion sharing"],0],
+
+["Primary data is:",
+["Data collected directly by the researcher","Data taken from a textbook only","Old historical data only","Rumours"],0],
+
+["Secondary data is:",
+["Data already collected by someone else","Data collected directly only","Personal opinion","A hypothesis"],0],
+
+["An interview is:",
+["A method of collecting information through questions","A social institution","A type of stratification","A value"],0],
+
+["Observation involves:",
+["Systematically watching and recording behaviour or events","Guessing","Only reading books","Voting"],0],
+
+["A questionnaire contains:",
+["A set of questions","Only answers","Only statistics","Only theories"],0],
+
+["Objectivity means:",
+["Trying to minimize personal bias","Following personal feelings","Guessing","Ignoring evidence"],0],
+
+["Subjectivity refers to:",
+["Influence of personal views and feelings","Complete neutrality","Scientific measurement","Social mobility"],0],
+
+["A hypothesis is:",
+["A tentative explanation that can be tested","A final conclusion","A social institution","A law of nature"],0],
+
+["Which is a qualitative research method?",
+["In-depth interview","Only numerical calculation","Population census only","Mathematical equation"],0]
+
+];
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let currentQuiz = firstQuiz;
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let selectedAnswer = null;
+
+let quizNumber = 1;
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const quizScreen =
+document.getElementById("quizScreen");
+
+const resultScreen =
+document.getElementById("resultScreen");
+
+const finalScreen =
+document.getElementById("finalScreen");
+
+const quizTitle =
+document.getElementById("quizTitle");
+
+const progress =
+document.getElementById("progress");
+
+const question =
+document.getElementById("question");
+
+const options =
+document.getElementById("options");
+
+const nextBtn =
+document.getElementById("nextBtn");
+
+const resultTitle =
+document.getElementById("resultTitle");
+
+const scoreText =
+document.getElementById("scoreText");
+
+const capableMessage =
+document.getElementById("capableMessage");
+
+const loadingMessage =
+document.getElementById("loadingMessage");
+
+const finalScore =
+document.getElementById("finalScore");
+
+const finalMessage =
+document.getElementById("finalMessage");
+
+
+/* =========================================================
+   LOAD QUESTION
+========================================================= */
+
+function loadQuestion() {
+
+    selectedAnswer = null;
+
+    const q = currentQuiz[currentQuestion];
+
+    progress.textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        currentQuiz.length;
+
+    question.textContent = q[0];
+
+    options.innerHTML = "";
+
+    q[1].forEach((option, index) => {
+
+        const button =
+        document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent = option;
+
+        button.onclick = function() {
+
+            document
+            .querySelectorAll(".option")
+            .forEach(btn =>
+                btn.classList.remove("selected")
+            );
+
+            button.classList.add("selected");
+
+            selectedAnswer = index;
+        };
+
+        options.appendChild(button);
+
+    });
+
+    nextBtn.textContent =
+        currentQuestion === currentQuiz.length - 1
+        ? "Finish Quiz"
+        : "Next Question";
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+nextBtn.onclick = function() {
+
+    if (selectedAnswer === null) {
+
+        alert("Please select an answer first.");
+
+        return;
+    }
+
+    if (
+        selectedAnswer ===
+        currentQuiz[currentQuestion][2]
+    ) {
+
+        score++;
+
+    }
+
+    currentQuestion++;
+
+    if (currentQuestion < currentQuiz.length) {
+
+        loadQuestion();
+
+    } else {
+
+        showResult();
+
+    }
+
+};
+
+
+/* =========================================================
+   SHOW RESULT
+========================================================= */
+
+function showResult() {
+
+    quizScreen.classList.add("hidden");
+
+    resultScreen.classList.remove("hidden");
+
+    scoreText.textContent =
+        "Your Score: " +
+        score +
+        " / " +
+        currentQuiz.length;
+
+
+    /* FIRST QUIZ RESULT */
+
+    if (quizNumber === 1) {
+
+        resultTitle.textContent =
+            "Quiz Completed! 🎉";
+
+        capableMessage.innerHTML =
+            "You have successfully completed the first 51 questions.<br><br>" +
+
+            "<strong>Now you are capable of taking the Class 11 Sociology Challenge.</strong>";
+
+        loadingMessage.textContent =
+            "Your Class 11 Sociology Test will start automatically...";
+
+
+        /*
+         AUTOMATICALLY START SOCIOLOGY
+         AFTER 2 SECONDS
+        */
+
+        setTimeout(function() {
+
+            startSociologyAutomatically();
+
+        }, 2000);
+
+    }
+
+
+    /* SOCIOLOGY RESULT */
+
+    else {
+
+        resultTitle.textContent =
+            "Sociology Test Completed! 🎓";
+
+        capableMessage.innerHTML =
+            "Excellent! You completed the Class 11 Sociology test.";
+
+        loadingMessage.textContent = "";
+
+        setTimeout(function() {
+
+            resultScreen.classList.add("hidden");
+
+            finalScreen.classList.remove("hidden");
+
+            finalScore.textContent =
+                "Final Score: " +
+                score +
+                " / " +
+                currentQuiz.length;
+
+
+            if (score >= 45) {
+
+                finalMessage.textContent =
+                    "Outstanding! 🌟 You have an excellent understanding of Class 11 Sociology.";
+
+            }
+
+            else if (score >= 35) {
+
+                finalMessage.textContent =
+                    "Great work! 👏 Your Sociology preparation is strong. Keep revising.";
+
+            }
+
+            else if (score >= 25) {
+
+                finalMessage.textContent =
+                    "Good attempt! 📚 Revise the important Sociology topics and try again.";
+
+            }
+
+            else {
+
+                finalMessage.textContent =
+                    "Keep practicing! 💪 Regular revision will help you improve your Sociology score.";
+
+            }
+
+        }, 1000);
+
+    }
+
+}
+
+
+/* =========================================================
+   AUTOMATICALLY START SOCIOLOGY
+========================================================= */
+
+function startSociologyAutomatically() {
+
+    currentQuiz = sociologyQuiz;
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    selectedAnswer = null;
+
+    quizNumber = 2;
+
+    resultScreen.classList.add("hidden");
+
+    quizScreen.classList.remove("hidden");
+
+    quizTitle.textContent =
+        "Class 11 Sociology - JKBOSE Test";
+
+    loadQuestion();
+
+}
+
+
+/* =========================================================
+   START FIRST QUIZ
+========================================================= */
+
+loadQuestion();
+
 </script>
+
+</body>
+</html>
