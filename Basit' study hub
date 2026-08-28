@@ -1,0 +1,1719 @@
+index.html<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Study Hub — Political Science</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#030712;
+    --card:rgba(15,23,42,.70);
+    --card2:rgba(30,41,59,.55);
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --blue:#3b82f6;
+    --purple:#8b5cf6;
+    --cyan:#06b6d4;
+    --border:rgba(255,255,255,.10);
+}
+
+body{
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================
+   CINEMATIC BACKGROUND
+========================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 10% 15%,rgba(37,99,235,.28),transparent 30%),
+        radial-gradient(circle at 90% 20%,rgba(124,58,237,.25),transparent 30%),
+        radial-gradient(circle at 50% 90%,rgba(6,182,212,.16),transparent 30%),
+        #030712;
+}
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    animation:float 12s infinite alternate ease-in-out;
+}
+
+.orb1{
+    width:320px;
+    height:320px;
+    background:#2563eb;
+    left:-130px;
+    top:-100px;
+}
+
+.orb2{
+    width:300px;
+    height:300px;
+    background:#7c3aed;
+    right:-100px;
+    top:25%;
+    animation-delay:3s;
+}
+
+.orb3{
+    width:250px;
+    height:250px;
+    background:#0891b2;
+    left:35%;
+    bottom:-130px;
+    animation-delay:6s;
+}
+
+@keyframes float{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+    to{
+        transform:translate(80px,60px) scale(1.25);
+    }
+}
+
+.stars{
+    position:absolute;
+    inset:0;
+    opacity:.25;
+    background-image:
+        radial-gradient(#fff 1px,transparent 1px),
+        radial-gradient(#fff 1px,transparent 1px);
+    background-size:90px 90px,150px 150px;
+    background-position:0 0,50px 80px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(3,7,18,.72);
+    backdrop-filter:blur(22px);
+    border-bottom:1px solid var(--border);
+}
+
+.header{
+    max-width:1200px;
+    margin:auto;
+    padding:16px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+}
+
+.logo span{
+    background:linear-gradient(
+        90deg,
+        #60a5fa,
+        #a78bfa,
+        #22d3ee
+    );
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.header-button{
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.06);
+    color:white;
+    padding:10px 13px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+    width:min(1200px,100%);
+    margin:auto;
+    padding:25px 16px 110px;
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome{
+    position:relative;
+    overflow:hidden;
+    padding:45px 30px;
+    border-radius:30px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37,99,235,.88),
+            rgba(91,33,182,.82),
+            rgba(8,145,178,.72)
+        );
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.45),
+        0 0 50px rgba(37,99,235,.15);
+    margin-bottom:25px;
+}
+
+.welcome:before{
+    content:"";
+    position:absolute;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    right:-200px;
+    top:-240px;
+}
+
+.welcome-content{
+    position:relative;
+    z-index:2;
+}
+
+.welcome h1{
+    font-size:clamp(42px,8vw,75px);
+    line-height:.95;
+    letter-spacing:-3px;
+    margin-bottom:20px;
+}
+
+.welcome h1 span{
+    display:block;
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #bfdbfe,
+        #cffafe
+    );
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.welcome p{
+    max-width:780px;
+    font-size:17px;
+    line-height:1.8;
+    color:#e0f2fe;
+}
+
+.creator{
+    margin-top:20px;
+    font-size:14px;
+    color:#dbeafe;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search{
+    margin:20px 0;
+}
+
+.search input{
+    width:100%;
+    padding:17px 20px;
+    border-radius:17px;
+    border:1px solid var(--border);
+    outline:none;
+    background:var(--card);
+    backdrop-filter:blur(20px);
+    color:white;
+    font-size:15px;
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:30px 0 15px;
+}
+
+.section-title h2{
+    font-size:24px;
+}
+
+.section-title span{
+    color:#60a5fa;
+    font-size:13px;
+}
+
+/* =========================
+   INFO CARDS
+========================= */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(190px,1fr));
+    gap:14px;
+}
+
+.info-card{
+    padding:20px;
+    border-radius:20px;
+    background:var(--card);
+    border:1px solid var(--border);
+    backdrop-filter:blur(20px);
+    transition:.3s;
+}
+
+.info-card:hover{
+    transform:translateY(-5px);
+    border-color:#60a5fa55;
+}
+
+.info-icon{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.info-card h3{
+    margin-bottom:7px;
+}
+
+.info-card p{
+    color:var(--muted);
+    line-height:1.5;
+    font-size:14px;
+}
+
+/* =========================
+   CHAPTER GRID
+========================= */
+
+.chapter-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(245px,1fr));
+    gap:16px;
+}
+
+.chapter{
+    position:relative;
+    overflow:hidden;
+    padding:22px;
+    border-radius:22px;
+    background:var(--card);
+    border:1px solid var(--border);
+    backdrop-filter:blur(20px);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.chapter:hover{
+    transform:translateY(-7px);
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35),
+        0 0 30px rgba(59,130,246,.08);
+    border-color:#60a5fa55;
+}
+
+.chapter-number{
+    color:#60a5fa;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.chapter h3{
+    font-size:19px;
+    line-height:1.4;
+    margin-bottom:10px;
+}
+
+.chapter p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.6;
+}
+
+.chapter-bottom{
+    margin-top:17px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#60a5fa;
+    font-size:13px;
+}
+
+/* =========================
+   QUICK REVISION
+========================= */
+
+.quick{
+    margin-top:30px;
+    padding:25px;
+    border-radius:23px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37,99,235,.12),
+            rgba(124,58,237,.12)
+        );
+    border:1px solid var(--border);
+}
+
+.quick h2{
+    margin-bottom:15px;
+}
+
+.quick ul{
+    padding-left:20px;
+}
+
+.quick li{
+    margin:9px 0;
+    color:#cbd5e1;
+    line-height:1.5;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:5000;
+    background:rgba(0,0,0,.82);
+    backdrop-filter:blur(15px);
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.modal.show{
+    display:flex;
+    animation:fade .3s ease;
+}
+
+@keyframes fade{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+.modal-box{
+    width:min(850px,100%);
+    max-height:91vh;
+    overflow:auto;
+    border-radius:27px;
+    padding:27px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(15,23,42,.98),
+            rgba(30,41,59,.96)
+        );
+    border:1px solid rgba(255,255,255,.13);
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.65);
+    animation:modalIn .45s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.92);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.modal-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.modal-top h2{
+    font-size:28px;
+    line-height:1.3;
+}
+
+.close{
+    height:40px;
+    min-width:40px;
+    border:0;
+    border-radius:12px;
+    background:rgba(255,255,255,.08);
+    color:white;
+    cursor:pointer;
+}
+
+.note-header{
+    padding:22px;
+    border-radius:20px;
+    margin-bottom:20px;
+    background:
+        linear-gradient(
+            135deg,
+            #1d4ed8,
+            #6d28d9,
+            #0e7490
+        );
+}
+
+.note-header p{
+    margin-top:8px;
+    color:#dbeafe;
+}
+
+.notes{
+    color:#cbd5e1;
+    line-height:1.8;
+    font-size:15px;
+}
+
+.notes h3{
+    color:white;
+    margin:24px 0 10px;
+    font-size:19px;
+}
+
+.notes ul{
+    padding-left:22px;
+}
+
+.notes li{
+    margin:8px 0;
+}
+
+.point{
+    padding:14px 16px;
+    margin:9px 0;
+    border-left:3px solid #60a5fa;
+    background:rgba(255,255,255,.045);
+    border-radius:0 12px 12px 0;
+}
+
+.bookmark-btn{
+    margin-top:20px;
+    padding:12px 16px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.07);
+    color:white;
+    cursor:pointer;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:3000;
+    background:rgba(3,7,18,.88);
+    backdrop-filter:blur(25px);
+    border-top:1px solid var(--border);
+}
+
+.nav-inner{
+    width:min(700px,100%);
+    margin:auto;
+    display:flex;
+}
+
+.nav-btn{
+    flex:1;
+    padding:11px 5px;
+    border:0;
+    background:transparent;
+    color:#94a3b8;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.nav-btn.active{
+    color:#60a5fa;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    margin-top:45px;
+    color:#64748b;
+    font-size:13px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .welcome{
+        padding:30px 22px;
+    }
+
+    .welcome h1{
+        font-size:45px;
+    }
+
+    .welcome p{
+        font-size:14px;
+    }
+
+    .chapter-grid{
+        grid-template-columns:1fr;
+    }
+
+    .modal-box{
+        padding:20px;
+    }
+
+    .modal-top h2{
+        font-size:22px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- CINEMATIC BACKGROUND -->
+
+<div class="background">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="stars"></div>
+</div>
+
+
+<!-- HEADER -->
+
+<header>
+
+<div class="header">
+
+<div class="logo">
+    <span>Study Hub</span>
+</div>
+
+<button
+class="header-button"
+onclick="showAbout()">
+    ✨ About
+</button>
+
+</div>
+
+</header>
+
+
+<main>
+
+<!-- =========================
+     WELCOME SCREEN
+========================= -->
+
+<section class="welcome">
+
+<div class="welcome-content">
+
+<h1>
+Study
+<span>Hub</span>
+</h1>
+
+<p>
+This app is for students who are preparing for
+Polity and Political Science. Study important
+concepts, revise chapters quickly, understand
+constitutional ideas, and strengthen your
+preparation step by step.
+</p>
+
+<div class="creator">
+Created with dedication by <strong>Muhammad Basit</strong>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search">
+
+<input
+id="searchInput"
+type="text"
+placeholder="🔎 Search chapters, topics, Articles, concepts..."
+oninput="searchChapters()">
+
+</div>
+
+
+<!-- =========================
+     QUICK STATS
+========================= -->
+
+<div class="info-grid">
+
+<div class="info-card">
+<div class="info-icon">🏛️</div>
+<h3>Political Science</h3>
+<p>Class 11 focused learning.</p>
+</div>
+
+<div class="info-card">
+<div class="info-icon">⚡</div>
+<h3>Instant Notes</h3>
+<p>Quick points for fast revision.</p>
+</div>
+
+<div class="info-card">
+<div class="info-icon">📖</div>
+<h3>Chapter Wise</h3>
+<p>Open every topic separately.</p>
+</div>
+
+<div class="info-card">
+<div class="info-icon">🎯</div>
+<h3>Exam Focused</h3>
+<p>Understand concepts for exams.</p>
+</div>
+
+</div>
+
+
+<!-- =========================
+     CLASS 11
+========================= -->
+
+<div class="section-title">
+
+<h2>📚 Class 11 Political Science</h2>
+
+<span>Instant Revision</span>
+
+</div>
+
+
+<div class="chapter-grid"
+id="chapterGrid">
+</div>
+
+
+<!-- =========================
+     QUICK POLITY
+========================= -->
+
+<div class="quick">
+
+<h2>⚡ Instant Polity Points</h2>
+
+<ul>
+
+<li>
+The Constitution is the supreme law of India.
+</li>
+
+<li>
+Fundamental Rights protect important freedoms
+and interests of citizens.
+</li>
+
+<li>
+Directive Principles provide guidelines for
+governance and social justice.
+</li>
+
+<li>
+The Indian Parliament consists of the President,
+Lok Sabha and Rajya Sabha.
+</li>
+
+<li>
+The Supreme Court is the highest court of India.
+</li>
+
+<li>
+Federalism involves division of powers between
+different levels of government.
+</li>
+
+<li>
+Democracy is based on participation,
+representation and accountability.
+</li>
+
+<li>
+The Election Commission conducts and supervises
+elections according to constitutional provisions.
+</li>
+
+</ul>
+
+</div>
+
+
+<footer>
+
+Study Hub • Political Science Learning App<br>
+Created by Muhammad Basit
+
+</footer>
+
+</main>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+class="modal"
+id="modal"
+onclick="outsideModal(event)">
+
+<div class="modal-box">
+
+<div class="modal-top">
+
+<h2 id="modalTitle">
+Chapter
+</h2>
+
+<button
+class="close"
+onclick="closeModal()">
+✕
+</button>
+
+</div>
+
+<div id="modalContent">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     NAV
+========================= -->
+
+<div class="bottom-nav">
+
+<div class="nav-inner">
+
+<button
+class="nav-btn active"
+onclick="goHome(this)">
+🏠<br>
+Home
+</button>
+
+<button
+class="nav-btn"
+onclick="scrollToChapters(this)">
+📚<br>
+Chapters
+</button>
+
+<button
+class="nav-btn"
+onclick="instantPoints(this)">
+⚡<br>
+Points
+</button>
+
+<button
+class="nav-btn"
+onclick="showAbout()">
+ℹ️<br>
+About
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   CHAPTER DATABASE
+===================================================== */
+
+const chapters = [
+
+{
+number:"CHAPTER 01",
+title:"Constitution: Why and How?",
+description:
+"Understand why a Constitution is needed and how the Indian Constitution was made.",
+
+points:[
+"The Constitution is the fundamental law of a country.",
+"It defines the basic structure of government.",
+"It limits government power.",
+"It protects important rights and values.",
+"The Indian Constitution was framed by the Constituent Assembly.",
+"The Constitution came into force on 26 January 1950."
+],
+
+notes:`
+The Constitution provides a framework for the functioning
+of the government and establishes important principles
+for political life.
+
+It explains how institutions should work and places
+limits on the powers of government.
+
+The Indian Constitution was prepared by the Constituent
+Assembly after extensive discussion and debate.
+
+For examination preparation, remember the relationship
+between the Constitution, democracy, rights and
+government institutions.
+`
+},
+
+{
+number:"CHAPTER 02",
+title:"Rights in the Indian Constitution",
+description:
+"Learn Fundamental Rights, constitutional protection and the importance of rights.",
+
+points:[
+"Fundamental Rights are guaranteed by the Constitution.",
+"Article 14 deals with equality before law and equal protection of laws.",
+"Article 19 provides important freedoms subject to constitutional restrictions.",
+"Article 21 protects life and personal liberty.",
+"Article 32 provides the Right to Constitutional Remedies.",
+"Fundamental Rights protect citizens against arbitrary state action."
+],
+
+notes:`
+Rights are essential for a democratic society.
+
+The Constitution guarantees Fundamental Rights and
+provides constitutional protection for important
+freedoms and equality.
+
+Article 14 is associated with equality before law.
+Article 19 contains important freedoms.
+Article 21 protects life and personal liberty.
+
+Article 32 provides a constitutional remedy for the
+enforcement of Fundamental Rights.
+
+Students should understand both the meaning of each
+right and its importance in a democracy.
+`
+},
+
+{
+number:"CHAPTER 03",
+title:"Election and Representation",
+description:
+"Understand elections, representation and the importance of democratic participation.",
+
+points:[
+"Elections allow citizens to choose representatives.",
+"Universal adult franchise is an important feature of Indian democracy.",
+"The Election Commission is responsible for important electoral functions.",
+"Secret ballot protects the privacy of voters.",
+"Representation connects citizens with government.",
+"Free and fair elections are essential for democracy."
+],
+
+notes:`
+Elections are a central mechanism through which citizens
+participate in representative democracy.
+
+In India, citizens elect representatives to different
+legislative institutions.
+
+The Election Commission of India performs important
+constitutional functions relating to elections.
+
+For exams, focus on representation, electoral
+participation, universal adult franchise and the
+importance of free and fair elections.
+`
+},
+
+{
+number:"CHAPTER 04",
+title:"Executive",
+description:
+"Understand the executive branch and the roles of the President, Prime Minister and Council of Ministers.",
+
+points:[
+"The executive implements laws and policies.",
+"The President is the constitutional head of the Union.",
+"The Prime Minister is the head of the Council of Ministers.",
+"The Council of Ministers is collectively responsible to the Lok Sabha.",
+"India follows a parliamentary system at the Union level.",
+"The executive is accountable to the legislature."
+],
+
+notes:`
+The executive is responsible for implementing laws and
+running the administration.
+
+India follows a parliamentary form of government.
+The President is the constitutional head of the Union,
+while the Prime Minister and Council of Ministers
+exercise real executive authority within the
+constitutional framework.
+
+The Council of Ministers is collectively responsible
+to the Lok Sabha.
+
+Students should understand the distinction between
+constitutional position and political executive.
+`
+},
+
+{
+number:"CHAPTER 05",
+title:"Legislature",
+description:
+"Learn about Parliament, Lok Sabha, Rajya Sabha and the law-making process.",
+
+points:[
+"The Parliament of India consists of the President and two Houses.",
+"Lok Sabha is the House of the People.",
+"Rajya Sabha represents the states and Union Territories.",
+"Parliament makes laws and controls the executive.",
+"Parliament also discusses national issues.",
+"Parliamentary committees assist legislative work."
+],
+
+notes:`
+The legislature is the law-making branch of government.
+
+At the Union level, Parliament consists of the President,
+Lok Sabha and Rajya Sabha.
+
+Parliament performs several important functions:
+law-making, discussion of public issues, representation,
+financial control and accountability of the executive.
+
+Students should clearly understand the difference between
+Lok Sabha and Rajya Sabha.
+`
+},
+
+{
+number:"CHAPTER 06",
+title:"Judiciary",
+description:
+"Understand judicial independence, courts and the role of the Supreme Court.",
+
+points:[
+"The Supreme Court is the highest court in India.",
+"The judiciary interprets laws and the Constitution.",
+"Judicial review is an important constitutional function.",
+"Judicial independence is important for constitutional government.",
+"High Courts operate at the state level.",
+"Courts protect legal and constitutional rights."
+],
+
+notes:`
+The judiciary is responsible for interpreting laws and
+resolving disputes.
+
+India has an integrated judicial system with the Supreme
+Court at the top, followed by High Courts and subordinate
+courts.
+
+Judicial independence is important because courts must
+be able to decide cases according to law and the
+Constitution.
+
+Judicial review enables courts to examine whether laws
+and governmental actions are consistent with the
+Constitution.
+`
+},
+
+{
+number:"CHAPTER 07",
+title:"Federalism",
+description:
+"Understand the relationship between the Union and the States.",
+
+points:[
+"Federalism involves more than one level of government.",
+"India has Union, State and local levels of government.",
+"The Constitution distributes powers between Union and States.",
+"The Seventh Schedule contains Union, State and Concurrent Lists.",
+"Federalism allows regional governments to address local needs.",
+"Indian federalism combines federal and unitary features."
+],
+
+notes:`
+Federalism is a system in which powers are distributed
+between different levels of government.
+
+The Indian Constitution divides legislative subjects
+between the Union and States through constitutional
+provisions.
+
+The Union List, State List and Concurrent List are
+important concepts.
+
+Indian federalism also contains certain unitary features,
+especially in situations where stronger Union authority
+is constitutionally provided.
+`
+},
+
+{
+number:"CHAPTER 08",
+title:"Local Governments",
+description:
+"Learn how local self-government works in rural and urban areas.",
+
+points:[
+"Local government brings administration closer to people.",
+"Panchayati Raj institutions operate in rural areas.",
+"Municipal institutions operate in urban areas.",
+"Local governments encourage democratic participation.",
+"The 73rd Constitutional Amendment concerns Panchayats.",
+"The 74th Constitutional Amendment concerns Municipalities."
+],
+
+notes:`
+Local government is important because many public issues
+are best handled close to the people.
+
+Rural local government is associated with Panchayati Raj,
+while urban local government includes municipal institutions.
+
+The 73rd and 74th Constitutional Amendments strengthened
+constitutional recognition of local government.
+
+Students should remember the difference between rural
+and urban local institutions.
+`
+},
+
+{
+number:"CHAPTER 09",
+title:"Constitution as a Living Document",
+description:
+"Understand constitutional amendments, interpretation and constitutional change.",
+
+points:[
+"The Constitution can be amended according to constitutional procedures.",
+"Constitutional interpretation develops through institutions.",
+"Amendments allow the Constitution to respond to changing circumstances.",
+"The Constitution balances stability and change.",
+"Judicial interpretation is important in constitutional development."
+],
+
+notes:`
+A Constitution must provide stability while also allowing
+society to respond to changing circumstances.
+
+The Indian Constitution contains procedures for amendment.
+
+Constitutional amendments can change provisions according
+to the procedure laid down by the Constitution.
+
+Courts also play an important role in interpreting
+constitutional provisions.
+`
+},
+
+{
+number:"CHAPTER 10",
+title:"Political Philosophy",
+description:
+"Build basic understanding of freedom, equality, justice and political ideals.",
+
+points:[
+"Freedom concerns the ability to act without unjust restrictions.",
+"Equality means treating people with equal concern and respect.",
+"Justice concerns fairness and appropriate distribution.",
+"Rights protect important interests and freedoms.",
+"Democracy is connected with participation and political equality.",
+"Political concepts should be understood rather than memorized."
+],
+
+notes:`
+Political philosophy studies important ideas about how
+society and political institutions should be organized.
+
+Freedom, equality and justice are central political concepts.
+
+Freedom does not mean absence of every restriction.
+Democratic societies allow reasonable restrictions while
+protecting individual liberty.
+
+Equality is concerned with equal status and equal
+consideration, while justice concerns fairness.
+`
+},
+
+{
+number:"CHAPTER 11",
+title:"Secularism",
+description:
+"Understand secularism and the relationship between religion and the state.",
+
+points:[
+"Secularism concerns the relationship between religion and political authority.",
+"Indian secularism is connected with equal respect for different religions.",
+"The Constitution protects freedom of religion.",
+"Secularism supports religious freedom and equality.",
+"Students should distinguish secularism from hostility towards religion."
+],
+
+notes:`
+Secularism deals with how the state relates to religion.
+
+The Indian constitutional framework protects freedom
+of religion and provides equality before law.
+
+Indian secularism has developed within the particular
+social and historical context of India.
+
+For examinations, focus on religious freedom,
+equality and the constitutional relationship between
+state and religion.
+`
+},
+
+{
+number:"CHAPTER 12",
+title:"Citizenship",
+description:
+"Understand citizenship, membership of the political community and constitutional values.",
+
+points:[
+"Citizenship establishes membership in a political community.",
+"Citizens have constitutional and legal rights and responsibilities.",
+"Citizenship is connected with political participation.",
+"The Constitution provides a framework for citizenship.",
+"Citizenship and equality are important democratic concepts."
+],
+
+notes:`
+Citizenship refers to formal membership in a political
+community.
+
+Citizenship is connected with rights, responsibilities,
+political participation and belonging.
+
+A democratic system depends on active and informed citizens.
+
+Students should understand citizenship not only as a
+legal status but also in relation to democratic
+participation and constitutional values.
+`
+}
+
+];
+
+
+/* =====================================================
+   RENDER CHAPTERS
+===================================================== */
+
+function renderChapters(list=chapters){
+
+const grid=document.getElementById("chapterGrid");
+
+grid.innerHTML="";
+
+if(list.length===0){
+
+grid.innerHTML=`
+<div class="info-card">
+<h3>No chapter found</h3>
+<p>Try another search term.</p>
+</div>
+`;
+
+return;
+
+}
+
+list.forEach((chapter,index)=>{
+
+grid.innerHTML+=`
+
+<div
+class="chapter"
+onclick="openChapter(${chapters.indexOf(chapter)})">
+
+<div class="chapter-number">
+${chapter.number}
+</div>
+
+<h3>
+${chapter.title}
+</h3>
+
+<p>
+${chapter.description}
+</p>
+
+<div class="chapter-bottom">
+<span>⚡ Instant Notes</span>
+<span>Open →</span>
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =====================================================
+   OPEN CHAPTER
+===================================================== */
+
+function openChapter(index){
+
+clickSound();
+
+const chapter=chapters[index];
+
+document.getElementById("modalTitle")
+.innerText=chapter.title;
+
+let points="";
+
+chapter.points.forEach(point=>{
+
+points+=`
+<div class="point">
+⚡ ${point}
+</div>
+`;
+
+});
+
+document.getElementById("modalContent")
+.innerHTML=`
+
+<div class="note-header">
+
+<strong>${chapter.number}</strong>
+
+<h2 style="margin-top:8px">
+${chapter.title}
+</h2>
+
+<p>
+${chapter.description}
+</p>
+
+</div>
+
+<div class="notes">
+
+<h3>⚡ Instant Points</h3>
+
+${points}
+
+<h3>📖 Instant Notes</h3>
+
+<p>
+${chapter.notes}
+</p>
+
+<h3>🎯 Exam Revision</h3>
+
+<ul>
+
+<li>
+Understand the definition and main concept.
+</li>
+
+<li>
+Remember important constitutional terms.
+</li>
+
+<li>
+Connect the topic with democracy and governance.
+</li>
+
+<li>
+Use examples where required.
+</li>
+
+<li>
+Revise the Instant Points before the examination.
+</li>
+
+</ul>
+
+<button
+class="bookmark-btn"
+onclick="bookmarkChapter(${index})">
+
+🔖 Save This Chapter
+
+</button>
+
+</div>
+
+`;
+
+document.getElementById("modal")
+.classList.add("show");
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchChapters(){
+
+const value=
+document.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
+
+const filtered=chapters.filter(chapter=>{
+
+return (
+chapter.title.toLowerCase().includes(value) ||
+chapter.description.toLowerCase().includes(value) ||
+chapter.number.toLowerCase().includes(value) ||
+chapter.points.some(
+point=>point.toLowerCase().includes(value)
+)
+);
+
+});
+
+renderChapters(filtered);
+
+}
+
+
+/* =====================================================
+   BOOKMARKS
+===================================================== */
+
+let saved=
+JSON.parse(
+localStorage.getItem("studyHubSaved")
+)||[];
+
+function bookmarkChapter(index){
+
+clickSound();
+
+if(saved.includes(index)){
+
+alert("This chapter is already saved 🔖");
+
+return;
+
+}
+
+saved.push(index);
+
+localStorage.setItem(
+"studyHubSaved",
+JSON.stringify(saved)
+);
+
+alert("Chapter saved successfully 🔖");
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function closeModal(){
+
+document.getElementById("modal")
+.classList.remove("show");
+
+}
+
+function outsideModal(event){
+
+if(event.target.id==="modal"){
+closeModal();
+}
+
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+function showAbout(){
+
+clickSound();
+
+document.getElementById("modalTitle")
+.innerText="About Study Hub";
+
+document.getElementById("modalContent")
+.innerHTML=`
+
+<div class="note-header">
+
+<h2>Study Hub</h2>
+
+<p>
+A student-focused Political Science learning app.
+</p>
+
+</div>
+
+<div class="notes">
+
+<h3>🎓 Purpose</h3>
+
+<p>
+This app is designed for students who are preparing
+for Polity and Political Science and want quick,
+organized revision material.
+</p>
+
+<h3>⚡ Main Features</h3>
+
+<ul>
+
+<li>Class 11 Political Science chapter-wise notes</li>
+<li>Instant revision points</li>
+<li>Quick search</li>
+<li>Exam-focused concepts</li>
+<li>Cinematic reading interface</li>
+<li>Chapter bookmarks</li>
+<li>Mobile-friendly design</li>
+
+</ul>
+
+<h3>👨‍💻 Creator</h3>
+
+<p>
+<strong>Muhammad Basit</strong>
+</p>
+
+</div>
+
+`;
+
+document.getElementById("modal")
+.classList.add("show");
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goHome(button){
+
+clickSound();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+setActive(button);
+
+}
+
+function scrollToChapters(button){
+
+clickSound();
+
+document
+.getElementById("chapterGrid")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+setActive(button);
+
+}
+
+function instantPoints(button){
+
+clickSound();
+
+document
+.querySelector(".quick")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+setActive(button);
+
+}
+
+function setActive(button){
+
+document
+.querySelectorAll(".nav-btn")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+}
+
+
+/* =====================================================
+   CLICK SOUND
+===================================================== */
+
+let audioContext=null;
+
+function clickSound(){
+
+try{
+
+if(!audioContext){
+
+audioContext=
+new (
+window.AudioContext ||
+window.webkitAudioContext
+)();
+
+}
+
+const oscillator=
+audioContext.createOscillator();
+
+const gain=
+audioContext.createGain();
+
+oscillator.type="sine";
+
+oscillator.frequency.setValueAtTime(
+620,
+audioContext.currentTime
+);
+
+oscillator.frequency.exponentialRampToValueAtTime(
+900,
+audioContext.currentTime+.08
+);
+
+gain.gain.setValueAtTime(
+0.0001,
+audioContext.currentTime
+);
+
+gain.gain.exponentialRampToValueAtTime(
+0.06,
+audioContext.currentTime+.015
+);
+
+gain.gain.exponentialRampToValueAtTime(
+0.0001,
+audioContext.currentTime+.13
+);
+
+oscillator.connect(gain);
+
+gain.connect(
+audioContext.destination
+);
+
+oscillator.start();
+
+oscillator.stop(
+audioContext.currentTime+.14
+);
+
+}catch(error){}
+
+}
+
+
+/* =====================================================
+   ESC KEY
+===================================================== */
+
+document.addEventListener(
+"keydown",
+function(event){
+
+if(event.key==="Escape"){
+closeModal();
+}
+
+});
+
+
+/* =====================================================
+   START APP
+===================================================== */
+
+renderChapters();
+
+</script>
+
+</body>
+</html>
